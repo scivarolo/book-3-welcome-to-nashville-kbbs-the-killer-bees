@@ -232,7 +232,6 @@ const HTMLPRINT = {
     ADDLISTENERS.addItinEvent();
   },
   weatherPrint(weather) {
-    console.log(weather);
     let currentWeather = document.createElement("div");
     currentWeather.setAttribute("id", "forecast");
     currentWeather.setAttribute("style", `background-image: url("http://openweathermap.org/img/w/${weather.weather[0].icon}.png"); background-size: contain; background-repeat: none`);
