@@ -16,18 +16,18 @@ function getZomatoSearch() {
 function outputZomatoResults(results) {
   restaurants = results.restaurants;
   console.log(restaurants);
-  zomatoResultsSection.innerHTML += "<ul>";
   restaurants.forEach((restaurant) => {
     zomatoResultsSection.innerHTML += `
-      <li>
+      <section class="single-result">
         <h3>${restaurant.restaurant.name}</h3>
         <h4>${restaurant.restaurant.location.address}</h4>
-        <p>Average Price for Two: $${restaurant.restaurant.average_cost_for_two}</p>
-        <button class="results__zomato__add">Add to Itinerary</button>
-      </li>
+        <section class="additional-data">
+          <p class="average-price">Average Price for Two: $${restaurant.restaurant.average_cost_for_two}</p>
+        </section>
+        <button class="add-button results__zomato__add">Add to Itinerary</button>
+      </section>
     `;
   });
-  zomatoResultsSection.innerHTML += "</ul>";
   addToItinEventListeners();
 }
 
@@ -37,7 +37,7 @@ zomatoSearchBtn.addEventListener("click", getZomatoSearch);
 
 // Add Event Listener to Add to Itinerary Buttons
 function addToItinEventListeners() {
-  let addButtons = zomatoResultsSection.querySelectorAll("li button");
+  let addButtons = zomatoResultsSection.querySelectorAll(".single-result button");
   addButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
       console.log(event);
@@ -55,6 +55,8 @@ function zomatoAddToItinerary(clickedButton) {
   itinerarySection.innerHTML = `<div>${desiredRestaurant.innerHTML}</div>`;
   let button = itinerarySection.querySelector("button");
   button.textContent = "Remove from Itinerary";
+  button.classList.remove("add-button");
+  button.classList.add("remove-button");
   button.addEventListener("click", (event) => {
     event.target.parentNode.remove();
   });
