@@ -196,6 +196,7 @@ const HTMLPRINT = {
     let parkContainer = document.createDocumentFragment();
     parks.forEach(park => {
       let outerContainer = document.createElement("section");
+      outerContainer.setAttribute("class", "single-result");
       let parkTitle = document.createElement("h3");
       parkTitle.innerHTML = park.park_name;
       outerContainer.appendChild(parkTitle);
