@@ -52,7 +52,8 @@ function zomatoAddToItinerary(clickedButton) {
   let itinerarySection = document.querySelector(".itinerary__zomato");
   console.log(itinerarySection);
   //desiredRestaurant.removeChild(clickedButton);
-  itinerarySection.innerHTML = `<div>${desiredRestaurant.innerHTML}</div>`;
+  itinerarySection.innerHTML = `<section>${desiredRestaurant.innerHTML}</section>`;
+  itinerarySection.querySelector(".additional-data").remove();
   let button = itinerarySection.querySelector("button");
   button.textContent = "Remove from Itinerary";
   button.classList.remove("add-button");
