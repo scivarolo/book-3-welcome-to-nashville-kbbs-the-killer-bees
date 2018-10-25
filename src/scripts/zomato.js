@@ -15,7 +15,6 @@ function getZomatoSearch() {
 function outputZomatoResults(results) {
   restaurants = results.restaurants;
   zomatoInput.value = null;
-  console.log(restaurants);
   restaurants.forEach((restaurant) => {
     zomatoResultsSection.innerHTML += `
       <section class="single-result">
@@ -40,7 +39,6 @@ function addToItinEventListeners() {
   let addButtons = zomatoResultsSection.querySelectorAll(".single-result button");
   addButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
-      console.log(event);
       zomatoAddToItinerary(event.target);
     });
   });
@@ -50,8 +48,6 @@ function addToItinEventListeners() {
 function zomatoAddToItinerary(clickedButton) {
   let desiredRestaurant = clickedButton.parentNode;
   let itinerarySection = document.querySelector(".itinerary__zomato");
-  console.log(itinerarySection);
-  //desiredRestaurant.removeChild(clickedButton);
   itinerarySection.innerHTML = `<section>${desiredRestaurant.innerHTML}</section>`;
   itinerarySection.querySelector(".additional-data").remove();
   let button = itinerarySection.querySelector("button");
