@@ -6,7 +6,6 @@ const zomatoResultsSection = document.querySelector(".results__zomato");
 function getZomatoSearch() {
   let queryString = zomatoInput.value;
   queryString = queryString.split(" ").join("+");
-
   zomatoAPI.request(queryString)
     .then(results => outputZomatoResults(results));
 }
@@ -15,6 +14,7 @@ function getZomatoSearch() {
 // Then adds Event Listeners to the Add buttons.
 function outputZomatoResults(results) {
   restaurants = results.restaurants;
+  zomatoInput.value = null;
   console.log(restaurants);
   restaurants.forEach((restaurant) => {
     zomatoResultsSection.innerHTML += `
