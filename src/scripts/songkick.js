@@ -48,6 +48,7 @@ const allEvents = (returnedEvents) => {
 
 let eventSelections = document.getElementById("songkickEventTypeSelect");
 function makeComponentFromArray(array){
+    document.getElementById("songkickInput").value = null;
     array.forEach(event => {
         let newEntry = document.createElement("section");
         newEntry.className = "single-result";
@@ -66,6 +67,13 @@ function makeComponentFromArray(array){
 function addEventToItinerary(temp){
     console.log("you clicked me");
     songkickItinerary.appendChild(temp);
+    songkickResults.innerHTML = null;
+    let btn = document.querySelector(".itinerary__songkick button");
+    btn.textContent = "Remove from Itinerary";
+    btn.className = "remove-button";
+    btn.addEventListener("click", (event) => {
+        event.target.parentNode.remove();
+    });
 };
 
 
