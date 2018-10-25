@@ -23,7 +23,11 @@
     <div class="search__songkick">
       <label for="songkickInput">Search SongKick</label>
       <input type="text" name="songkickInput" id="songkickInput">
-      <button id="songkickInputBtn">Search</button>
+      <select id="songkickEventTypeSelect" name="songkickInput">
+        <option value="music">Music</option>
+        <option value="sports">Sports</option>
+      </select>
+      <button id="songkickInputBtn" onclick="makeResults()">Search</button>
     </div>
     <div class="search__parks">
       <label for="parksInput">Search Parks</label>
@@ -42,7 +46,7 @@
   <section id="results" class="wrapper wrapper--results">
     <h2>Here are your results:</h2>
     <div class="results__yelp" ></div>
-    <div class="results__songkick"></div>
+    <div class="results__songkick"> </div>
     <div class="results__parks"></div>
     <div class="results__meetups"></div>
   </section>
@@ -57,6 +61,8 @@
       <div class="itinerary__meetups"></div>
     </section>
   <!-- End Itinerary Display -->
+  <script src="scripts/api-songkick.js"></script>
+  <script src="scripts/songkick.js"></script>
   </body>
 
 </html>
