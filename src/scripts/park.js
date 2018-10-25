@@ -223,7 +223,7 @@ const HTMLPRINT = {
       outerContainer.appendChild(parkFeatures);
       let addButton = document.createElement("button");
       addButton.setAttribute("id", park.park_name);
-      addButton.innerHTML = "Add To Itineray"
+      addButton.innerHTML = "Add To Itinerary"
       addButton.setAttribute("class", "add-button");
       outerContainer.appendChild(addButton);
       parkContainer.appendChild(outerContainer);
@@ -247,7 +247,7 @@ const HTMLPRINT = {
     let currentTemp = (weather.main.temp - 273.15) * 9 / 5 + 32;
     let tempDisplay = document.createElement("p");
     tempDisplay.setAttribute("id", "currentCondition");
-    tempDisplay.innerHTML = Math.ceil(currentTemp) + '&deg;';
+    tempDisplay.innerHTML = Math.ceil(currentTemp) + "&deg;";
     currentWeather.appendChild(tempDisplay);
     let tempCondition = document.createElement("p");
     tempCondition.setAttribute("id", "currentCondition");
