@@ -123,10 +123,10 @@ let addedItem = {};
 // This section adds event listeners when html elements are dynamically created.
 const ADDLISTENERS = {
   addItinEvent() {
-    document.querySelector(".add-button").addEventListener("click", HANDLEEVENT.parkItin);
+    document.querySelector(".results__parks .add-button").addEventListener("click", HANDLEEVENT.parkItin);
   },
   removeItinEvent() {
-    document.querySelector(".remove-button").addEventListener("click", HANDLEEVENT.removeFromItin);
+    document.querySelector(".itinerary__parks .remove-button").addEventListener("click", HANDLEEVENT.removeFromItin);
   }
 };
 
