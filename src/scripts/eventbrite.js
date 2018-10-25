@@ -1,64 +1,74 @@
-// All global variables that need to be declared
-let eventbriteButton = document.getElementById("eventbriteInputBtn")
-const eventbriteResults = document.querySelector(".results__eventbrite")
-let fragment = document.createDocumentFragment()
-let eventbriteSearchValue = document.getElementById("eventbriteInput")
-
-// Eventlistener on button, takes input and calls function to fetch data from API, pass in parameter with search terms
-// Meetup input button id="eventbriteInputBtn"
-eventbriteButton.addEventListener("click", ()=>{
-  eventbriteCategoryMatch(eventbriteSearchValue.value)
-})
+// Eventbrite Variable Declaration
+let eventbriteButton = document.getElementById("eventbriteInputBtn");
+let eventbriteResults = document.querySelector(".results__eventbrite");
+let fragment = document.createDocumentFragment();
+let eventbriteSearchValue = document.getElementById("eventbriteInput");
+let dateFormatted = " ";
 
 
-// Takes data from API and makes a new element
-let elementFactory = (el, content, {clazz}, ...children)=>{
-  let element = document.createElement(el)
-  element.innerHTML = content || null
-  children.forEach(child => {
-    element.appendChild(child)
-  })
-  element.setAttribute("class", clazz)
-  return element
+// ---EVENTBRITE SEARCH FUNCTIONS---
+
+function clearEventbriteSearch(){
+  eventbriteSearchValue.value = "";
 }
 
-// Display element in results portion of the DOM
+// ---EVENTBRITE RESULTS FUNCTIONS---
+// Element Factory to create each of the HTML elements needed to display the results to the DOM
+let elementFactory = (el, content, {clazz, id}, ...children)=>{
+  let element = document.createElement(el);
+  element.innerHTML = content || null;
+  children.forEach(child => {
+    element.appendChild(child);
+  });
+  element.setAttribute("id", id);
+  element.setAttribute("class", clazz);
+  return element;
+};
+
+// Used to reformat date provided via query to readable date
+function getCorrectDate (eventDate){
+  let datearr =`${eventDate}`.substring(0,10).split("-");
+  [datearr[0], datearr[1], datearr[2]] = [datearr[1], datearr[2], datearr[0]];
+  dateFormatted = datearr.join("/");
+  return dateFormatted;
+}
+
+// Takes results passed through fetch and calls correct date and element factory functions. Takes returned values and appends them to the results section of the DOM
 function eventbriteQueryResults (eventsar){
   eventsar.forEach(events =>{
-    let date = events.start.local
-    let dateFormatted = " "
-    function getCorrectDate (date){
-      let datearr =`${date}`.substring(0,10).split("-");
-      [datearr[0], datearr[1], datearr[2]] = [datearr[1], datearr[2], datearr[0]]
-      dateFormatted = datearr.join("/")
-      return dateFormatted
-    }
-    getCorrectDate(date)
-    let selectionButton = elementFactory("button", "Save", {clazz: "eventbrite__button"})
-    let eventResult = elementFactory("p", `${dateFormatted}: ${events.name.text}`, {clazz: "eventbrite__result"}, selectionButton)
-    fragment.appendChild(eventResult)
-  })
+    let eventDate = events.start.local;
+    getCorrectDate(eventDate);
+
+    let date = elementFactory("h4", dateFormatted, {clazz: null, id: `search-result-date-${events.id}`});
+    let eventName = elementFactory("h3", events.name.text, {clazz: null, id: `search-result-name-${events.id}`});
+    let selectionButton = elementFactory("button", "Save", {clazz: "add-button", id: `button-select-${events.id}`});
+    let eventResult = elementFactory("section", null, {clazz: "single-result", id: `search-result-${events.id}`}, eventName, date, selectionButton);
+    fragment.appendChild(eventResult);
+  });
   eventbriteResults.appendChild(fragment);
+  clearEventbriteSearch();
+  addItineraryListeners();
   }
 
-// Event listener on results portion of the DOM that takes selected element and passes it to itenary section
+  // Clears Results section once an event is selected to be added to the itinerary
+  function clearEventbriteResults(){
+    eventbriteResults.innerHTML = "";
+  }
 
+  // ---EVENTBRITE ITINERARY FUNCTIONS---
+  function populateEventbriteItinerary(result){
+    let eventbriteItinerary = document.querySelector(".itinerary__eventbrite");
+    if (eventbriteItinerary === ""){
+      eventbriteItinerary.appendChild(result);
+      clearEventbriteResults();
+    } else {
+      eventbriteItinerary.innerHTML = "";
+      eventbriteItinerary.appendChild(result);
+      clearEventbriteResults();
+    }
+  }
 
-// Display selected element in itenary portion of the DOM
-// DOM section is class="itinerary__eventbrite"
-let eventbriteItinerarySelector = document.querySelectorAll(".eventbrite__button")
-eventbriteItinerarySelector.forEach((button)=>{
-  button.addEventListener("click", ()=>{
-
-  })
-})
-
-// Void additional inputs from that section
-function clearEventbriteSearch(){
-  eventbriteSearchValue.value = ''
+function pullSelectedElement (ID){
+  let eventbriteSelectedResult = document.querySelector(`#search-result-${ID}`);
+  populateEventbriteItinerary(eventbriteSelectedResult);
 }
-
-function clearEventbriteResults(){
-  eventbriteResults = ''
-}
-// DOM section is class="search__eventbrite"
