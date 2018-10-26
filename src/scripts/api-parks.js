@@ -12,7 +12,7 @@ const API = {
       body: JSON.stringify(temp)
     })
       .then(itinerary => itinerary.json())
-      .then(() => API.getItinerary())
+      .then(() => API.getItinerary());
   },
   getParkData(parkSearchInput) {
     return fetch("https://data.nashville.gov/resource/xbru-cfzi.json")
