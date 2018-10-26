@@ -48,10 +48,10 @@ function addToItinEventListeners() {
 function zomatoAddToItinerary(clickedButton) {
   let desiredRestaurant = clickedButton.parentNode;
   let itinerarySection = document.querySelector(".itinerary__zomato");
-  itinerarySection.innerHTML = `<section>${desiredRestaurant.innerHTML}</section>`;
+  itinerarySection.innerHTML = `<section class="single-result">${desiredRestaurant.innerHTML}</section>`;
   itinerarySection.querySelector(".additional-data").remove();
   let button = itinerarySection.querySelector("button");
-  button.textContent = "Remove from Itinerary";
+  button.textContent = "Remove";
   button.classList.remove("add-button");
   button.classList.add("remove-button");
   button.addEventListener("click", (event) => {

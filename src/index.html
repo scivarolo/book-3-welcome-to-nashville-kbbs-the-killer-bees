@@ -5,18 +5,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:300,300i,700,700i" rel="stylesheet">
   <link rel="stylesheet" href="styles/park.css">
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/results.css">
   <title>Welcome to Nashville</title>
 </head>
 
 <body>
-  <h1>Welcome to Nashville</h1>
+  <h1 class="page-title">Welcome to Nashville</h1>
 
   <!-- Search Boxes -->
   <section id="search" class="wrapper wrapper--search">
-    <h2>Search for Something</h2>
-    <div class="search__zomato">
+    <nav class="search-nav">
+      <ul>
+        <li class="search-tab active">Restaurants</li>
+        <li class="search-tab">Concerts</li>
+        <li class="search-tab">Parks</li>
+        <li class="search-tab">Events</li>
+      </ul>
+    </nav>
+    <h2 class="section__heading">Search for Something</h2>
+    <div class="search__zomato show">
       <label for="zomatoInput">Search Zomato</label>
       <input type="text" name="zomatoInput" id="zomatoInput">
       <button id="zomatoInputBtn">Search</button>
@@ -45,7 +55,7 @@
 
   <!-- Results Display -->
   <section id="results" class="wrapper wrapper--results">
-    <h2>Here are your results:</h2>
+    <h2 class="section__heading">Here are your results:</h2>
     <div class="results__zomato"></div>
     <div class="results__songkick"></div>
     <div class="results__parks"></div>
@@ -55,7 +65,7 @@
 
   <!-- Itinerary Display -->
     <section id="itinerary" class="wrapper wrapper--itinerary">
-      <h2>Your Itinerary</h2>
+      <h2 class="section__heading">Your Itinerary</h2>
       <div class="itinerary__zomato"></div>
       <div class="itinerary__songkick"></div>
       <div class="itinerary__parks"></div>
@@ -69,6 +79,7 @@
   <script src="scripts/zomato.js"></script>
   <script src="scripts/api-parks.js"></script>
   <script src="scripts/park.js"></script>
+  <script src="scripts/interaction.js"></script>
   </body>
 
 </html>
