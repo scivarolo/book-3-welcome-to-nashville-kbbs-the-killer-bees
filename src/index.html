@@ -24,7 +24,11 @@
     <div class="search__songkick">
       <label for="songkickInput">Search SongKick</label>
       <input type="text" name="songkickInput" id="songkickInput">
-      <button id="songkickInputBtn">Search</button>
+      <select id="songkickEventTypeSelect" name="songkickInput">
+        <option value="music">Music</option>
+        <option value="sports">Sports</option>
+      </select>
+      <input type="button" id="songkickInputBtn" value="Search">
     </div>
     <div class="search__parks">
       <section id="parkInitialSelector"></section>
@@ -62,6 +66,8 @@
       <button onclick="HANDLEEVENT.saveToDatabase()">Save Itinerary</button>
     </section>
   <!-- End Itinerary Display -->
+  <script src="scripts/api-songkick.js"></script>
+  <script src="scripts/songkick.js"></script>
 
   <script src="scripts/api-zomato.js"></script>
   <script src="scripts/zomato.js"></script>
