@@ -28,6 +28,11 @@
   margin: 0px;
   line-height: .9;
 }
+.parkInput {
+  border: none;
+  padding: 0px;
+  margin: 0px;
+}
 .parkBlock {
   margin: 30px;
   background-color: white;
@@ -63,17 +68,28 @@
   padding: 10px;
   line-height: 0px;
 }
-.addButton{
+#parkRadioContainer {
   text-align: center;
-  background-color: rgb(248, 109, 109);
-  color: white;
-  padding: 4px;
-  font-size: 23px;
-  font-weight: bold;
-  margin: 5px;
-  border: 3px solid black;
-  border-radius: 20px;
 }
-.addButton:hover{
-  background-color: red;
+.indivBox {
+  width: 77px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 7px;
+}
+#savedItineraries {
+  text-align: center;
+}
+#savedItineraries button {
+  display: none;
+}
+.savedItinEvents {
+  border: 2px solid black;
+  margin: 20px;
+}
+.savedItinEvents div {
+  border-bottom: 2px dashed black;
+  margin: 5px;
 }

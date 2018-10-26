@@ -31,9 +31,12 @@
       <input type="button" id="songkickInputBtn" value="Search">
     </div>
     <div class="search__parks">
-      <label for="parksInput">Search Parks</label>
+      <section id="parkInitialSelector"></section>
+      <section id="parkInputContainer"></section>
+      <section id="parkRadioContainer"></section>
+      <!-- <label for="parksInput">Search Parks</label>
       <input type="text" name="parksInput" id="parksInput">
-      <button id="parksInputBtn">Search</button>
+      <button id="parksInputBtn">Search</button> -->
     </div>
     <div class="search__eventbrite">
       <label for="eventbriteInput">Search Eventbrite</label>
@@ -60,12 +63,15 @@
       <div class="itinerary__songkick"></div>
       <div class="itinerary__parks"></div>
       <div class="itinerary__eventbrite"></div>
+      <button onclick="HANDLEEVENT.saveToDatabase()">Save Itinerary</button>
     </section>
   <!-- End Itinerary Display -->
+
+    <section id="savedItineraries"></section>
+
   <script src="scripts/eventbrite.js"></script>
   <script src="scripts/event-eventbrite.js"></script>
-<script src="scripts/api-eventbrite.js"></script>
-</body>
+  <script src="scripts/api-eventbrite.js"></script>
   <script src="scripts/api-songkick.js"></script>
   <script src="scripts/songkick.js"></script>
 
@@ -73,6 +79,8 @@
   <script src="scripts/zomato.js"></script>
   <script src="scripts/api-parks.js"></script>
   <script src="scripts/park.js"></script>
+
+  <audio src="/audio/welcome.mp3" id="my_audio" autoplay="autoplay"></audio>
   </body>
 
 </html>
