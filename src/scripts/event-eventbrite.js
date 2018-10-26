@@ -10,7 +10,6 @@ function addItineraryListeners (){
   eventbriteResultSelector.forEach((button)=>{
     button.addEventListener("click",(selectedButton)=>{
       itineraryId = selectedButton.target.id.substring(14,25);
-      // console.log(selectedButton.target)
       pullSelectedElement(itineraryId);
     });
   });
