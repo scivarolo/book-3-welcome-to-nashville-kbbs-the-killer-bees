@@ -142,6 +142,20 @@ const CLEARPREVIOUS = {
 
 // This section handles triggered events from the search parks element and from the add to itinerary.
 const HANDLEEVENT = {
+  saveToDatabase() {
+    let newEvent = {};
+    let stringItinerary = "";
+    stringItinerary = document.querySelector(".itinerary__zomato").innerHTML;
+    newEvent.zomato = stringItinerary;
+    stringItinerary = document.querySelector(".itinerary__songkick").innerHTML;
+    newEvent.songkick = stringItinerary;
+    stringItinerary = document.querySelector(".itinerary__parks").innerHTML;
+    newEvent.parks = stringItinerary;
+    stringItinerary = document.querySelector(".itinerary__meetups").innerHTML;
+    newEvent.meetups = stringItinerary;
+    console.log(newEvent);
+    API.saveItinerary(newEvent);
+  },
   parkItin() {
     searchResults.forEach(park => {
       if (park.park_name === event.target.id) {

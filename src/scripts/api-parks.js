@@ -1,4 +1,19 @@
 const API = {
+  getItinerary() {
+    return fetch("http://localhost:8088/itinerary")
+      .then(itinerary => itinerary.json());
+  },
+  saveItinerary(temp) {
+    return fetch("http://localhost:8088/itinerary", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(temp)
+    })
+    // .then(itinerary => itinerary.json())
+    // .then(() => API.getItinerary());
+  },
   getParkData(parkSearchInput) {
     return fetch("https://data.nashville.gov/resource/xbru-cfzi.json")
       .then(parkData => parkData.json())
