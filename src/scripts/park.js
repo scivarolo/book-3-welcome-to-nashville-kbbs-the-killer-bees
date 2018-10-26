@@ -159,7 +159,10 @@ const HANDLEEVENT = {
       stringItinerary = document.querySelector(".itinerary__eventbrite").innerHTML;
       newEvent.eventbrite = stringItinerary;
       console.log(newEvent);
-      API.saveItinerary(newEvent).then(itins => itins.forEach(itin => HTMLPRINT.printSaved(itin)));
+      API.saveItinerary(newEvent).then(itins => {
+        savedItin.innerHTML = null;
+        itins.forEach(itin => HTMLPRINT.printSaved(itin))
+      });
       document.getElementById("results").innerHTML = "";
     }
   },
