@@ -1,4 +1,5 @@
 const zomatoSearchBtn = document.querySelector("#zomatoInputBtn");
+const zomatoTrendingBtn = document.querySelector("#zomatoTrendingBtn");
 const zomatoInput = document.querySelector("#zomatoInput");
 const zomatoResultsSection = document.querySelector(".results__zomato");
 
@@ -6,6 +7,15 @@ const zomatoResultsSection = document.querySelector(".results__zomato");
 function getZomatoSearch() {
   let queryString = zomatoInput.value;
   queryString = queryString.split(" ").join("+");
+  queryString = `&q=${queryString}`;
+  clearZomatoResults();
+  zomatoAPI.request(queryString)
+    .then(results => outputZomatoResults(results));
+}
+
+function getZomatoTrending() {
+  let queryString = "&collection_id=1";
+  clearZomatoResults();
   zomatoAPI.request(queryString)
     .then(results => outputZomatoResults(results));
 }
@@ -15,13 +25,20 @@ function getZomatoSearch() {
 function outputZomatoResults(results) {
   restaurants = results.restaurants;
   zomatoInput.value = null;
-  restaurants.forEach((restaurant) => {
+  restaurants.forEach((result) => {
+    let reservations = "";
+    if (result.restaurant.has_table_booking === 1) {
+      reservations = `<a href="${result.restaurant.book_url}" target="_blank"><button class="reservation-button">Book a Table</button></a>`;
+    }
+
     zomatoResultsSection.innerHTML += `
       <section class="single-result">
-        <h3>${restaurant.restaurant.name}</h3>
-        <h4>${restaurant.restaurant.location.address}</h4>
+        <h3>${result.restaurant.name}</h3>
+        <h4>${result.restaurant.location.address}</h4>
         <section class="additional-data">
-          <p class="average-price">Average Price for Two: $${restaurant.restaurant.average_cost_for_two}</p>
+          <p class="restaurant-raiting">Rating: ${result.restaurant.user_rating.aggregate_rating} based on ${result.restaurant.user_rating.votes} reviews</p>
+          <p class="average-price">Average Price for Two: $${result.restaurant.average_cost_for_two}</p>
+          ${reservations}
         </section>
         <button class="add-button results__zomato__add">Add to Itinerary</button>
       </section>
@@ -32,7 +49,7 @@ function outputZomatoResults(results) {
 
 // Add Event Listener to Zomato search button
 zomatoSearchBtn.addEventListener("click", getZomatoSearch);
-
+zomatoTrendingBtn.addEventListener("click", getZomatoTrending);
 
 // Add Event Listener to Add to Itinerary Buttons
 function addToItinEventListeners() {
