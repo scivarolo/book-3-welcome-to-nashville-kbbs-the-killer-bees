@@ -28,7 +28,7 @@
   margin: 0px;
   line-height: .9;
 }
-.parkInput {
+/* .parkInput {
   border: none;
   padding: 0px;
   margin: 0px;
@@ -78,10 +78,10 @@
   align-items: center;
   text-align: center;
   padding-bottom: 7px;
-}
-#savedItineraries {
+} */
+/* #savedItineraries {
   text-align: center;
-}
+} */
 #savedItineraries button {
   display: none;
 }
@@ -92,4 +92,16 @@
 .savedItinEvents div {
   border-bottom: 2px dashed black;
   margin: 5px;
+}
+
+#parkRadioContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+.indivBox {
+  display: flex;
+  margin: 10px;
+}
+.indivBox input {
+  order: -1;
 }
