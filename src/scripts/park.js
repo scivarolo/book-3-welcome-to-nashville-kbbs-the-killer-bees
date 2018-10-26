@@ -116,6 +116,7 @@ const features = [
 const parkPlaceholder = document.querySelector(".results__parks");
 const parkItinPlaceholder = document.querySelector(".itinerary__parks");
 const parkSearchPlaceholder = document.querySelector(".search__parks");
+const savedItin = document.querySelector("#savedItineraries");
 let featureString = "";
 let searchResults = [];
 let addedItem = {};
@@ -145,7 +146,11 @@ const HANDLEEVENT = {
   saveToDatabase() {
     let newEvent = {};
     let stringItinerary = "";
-    stringItinerary = document.querySelector(".itinerary__zomato").innerHTML;
+    stringItinerary = document.querySelector(".itinerary__zomato");
+    // for (let i = 0; i < stringItinerary.childNodes.length - 1; i++) {
+    //   stringItinerary += stringItinerary.childNodes[i].innerHTML;
+    //    // Text, DIV, Text, UL, ..., SCRIPT
+    // }
     newEvent.zomato = stringItinerary;
     stringItinerary = document.querySelector(".itinerary__songkick").innerHTML;
     newEvent.songkick = stringItinerary;
@@ -186,6 +191,27 @@ const HANDLEEVENT = {
 
 // This section handles the creation of html elements and posts to html page.
 const HTMLPRINT = {
+  printSaved(itin) {
+    let eachItin = document.createElement("article");
+    eachItin.setAttribute("class", "savedItinEvents");
+    let food = document.createElement("div");
+    food.setAttribute("class", "itinerary__zomato");
+    food.innerHTML = itin.zomato;
+    eachItin.appendChild(food);
+    let music = document.createElement("div");
+    music.setAttribute("class", "itinerary__songkick");
+    music.innerHTML = itin.songkick;
+    eachItin.appendChild(music);
+    let park = document.createElement("div");
+    park.setAttribute("class", "itinerary__parks");
+    park.innerHTML = itin.parks;
+    eachItin.appendChild(park);
+    let meeting = document.createElement("div");
+    meeting.setAttribute("class", "itinerary__meetups");
+    meeting.innerHTML = itin.meetups;
+    eachItin.appendChild(meeting);
+    savedItin.appendChild(eachItin);
+  },
   createParkSearch() {
     document.getElementById("parkInitialSelector").innerHTML = `
     <fieldset class="parkInput">
@@ -332,3 +358,4 @@ weatherPrint(weather) {
 
 API.getWeatherData();
 HTMLPRINT.createParkSearch();
+API.getItinerary().then(events => events.forEach(event => HTMLPRINT.printSaved(event)));
