@@ -92,27 +92,26 @@ function makeComponentFromArray(array){
         songkickResults.appendChild(newEntry);
         // console.log(newEntry);
         let addButton = document.getElementById(`${event.id}`);
-        addButton.addEventListener("click", ()=>addEventToItinerary(newEntry));
+        addButton.addEventListener("click", function addEventToItineraryFunction(){
+            addEventToItinerary(newEntry);
+            addButton.removeEventListener("click", addEventToItineraryFunction);
+        });
     });
 }
 
 function addEventToItinerary(temp){
-    if (songkickItinerary.innerHTML === ""){
-        itinerarySection.classList.remove("hidden");
-        songkickItinerary.appendChild(temp);
-        songkickResults.innerHTML = "";
-        let btn = document.querySelector(".itinerary__songkick button");
-        btn.textContent = "Remove from Itinerary";
-        btn.className = "remove-button";
-        btn.addEventListener("click", (event) => {
-            event.target.parentNode.remove();
-        });
-    } else {
+    if (songkickItinerary.innerHTML !== ""){
         alert("You've already added an event to this category.\nYour current selection will be replace the prior one.");
-        songkickResults.innerHTML = "";
         songkickItinerary.innerHTML = "";
-        songkickItinerary.appendChild(temp);
-    };
+    }
+    songkickResults.innerHTML = "";
+    songkickItinerary.appendChild(temp);
+    let btn = document.querySelector(".itinerary__songkick button");
+    btn.textContent = "Remove from Itinerary";
+    btn.className = "remove-button";
+    btn.addEventListener("click", (event) => {
+        event.target.parentNode.remove();
+    });
 };
 
 
