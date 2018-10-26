@@ -68,5 +68,5 @@ body {
   }
 
   .hidden {
-      visibility: hidden;
+      /* visibility: hidden; */
   }

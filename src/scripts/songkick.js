@@ -71,33 +71,45 @@ let eventSelections = document.getElementById("songkickEventTypeSelect");
 function makeComponentFromArray(array){
     document.getElementById("songkickInput").value = null;
     array.forEach(event => {
+        // reformat date function
+        let reformattedDate = event.date;
+        getCorrectDate(reformattedDate)
+
         let newEntry = document.createElement("section");
         newEntry.className = "single-result shadow";
         let eventImage = `<div><img src="${event.image}" alt="${event.name}" width="200"></img></div>`;
         let eventName = `<h3>${event.name}</h3>`;
-        let eventDateAndVenue =`<h4><strong>${event.date}:</strong> ${event.venue}</h4>`;
+        // let eventDateAndVenue =`<h4><strong>${event.date}:</strong> ${event.venue}</h4>`;
+        let eventDateAndVenue =`<h4><strong>${dateFormatted}:</strong> ${event.venue}</h4>`;
         let eventLink = `<p><a href="${event.url}" target=”_blank” class="buyTix">Buy Tickets</a></p>`;
         let addToItineraryBtn = `<button id="${event.id}" name="event" value="${event.id}" class="add-button">Add to Itinerary</button>`;
         let entryContents = `${eventImage}${eventName}${eventDateAndVenue}${eventLink}${addToItineraryBtn}`;
         newEntry.innerHTML = entryContents;
         resultsSection.classList.remove("hidden");
         songkickResults.appendChild(newEntry);
-        console.log(newEntry);
+        // console.log(newEntry);
         let addButton = document.getElementById(`${event.id}`);
         addButton.addEventListener("click", ()=>addEventToItinerary(newEntry));
     });
 }
 
 function addEventToItinerary(temp){
-    itinerarySection.classList.remove("hidden");
-    songkickItinerary.appendChild(temp);
-    songkickResults.innerHTML = null;
-    let btn = document.querySelector(".itinerary__songkick button");
-    btn.textContent = "Remove from Itinerary";
-    btn.className = "remove-button";
-    btn.addEventListener("click", (event) => {
-        event.target.parentNode.remove();
-    });
+    if (songkickItinerary.innerHTML === ""){
+        itinerarySection.classList.remove("hidden");
+        songkickItinerary.appendChild(temp);
+        songkickResults.innerHTML = "";
+        let btn = document.querySelector(".itinerary__songkick button");
+        btn.textContent = "Remove from Itinerary";
+        btn.className = "remove-button";
+        btn.addEventListener("click", (event) => {
+            event.target.parentNode.remove();
+        });
+    } else {
+        alert("You've already added an event to this category.");
+        songkickResults.innerHTML = "";
+        songkickItinerary.innerHTML = "";
+        songkickItinerary.appendChild(temp);
+    };
 };
 
 
