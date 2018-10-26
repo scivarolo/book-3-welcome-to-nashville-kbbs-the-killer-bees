@@ -44,6 +44,10 @@ function addToItinEventListeners() {
   });
 }
 
+function clearZomatoResults() {
+  zomatoResultsSection.innerHTML = "";
+}
+
 // Output desired restaurant to the Itinerary section
 function zomatoAddToItinerary(clickedButton) {
   let desiredRestaurant = clickedButton.parentNode;
@@ -51,10 +55,11 @@ function zomatoAddToItinerary(clickedButton) {
   itinerarySection.innerHTML = `<section>${desiredRestaurant.innerHTML}</section>`;
   itinerarySection.querySelector(".additional-data").remove();
   let button = itinerarySection.querySelector("button");
-  button.textContent = "Remove from Itinerary";
+  button.textContent = "Remove";
   button.classList.remove("add-button");
   button.classList.add("remove-button");
   button.addEventListener("click", (event) => {
     event.target.parentNode.remove();
   });
+  clearZomatoResults();
 }
