@@ -107,7 +107,7 @@ function addEventToItinerary(temp){
     songkickResults.innerHTML = "";
     songkickItinerary.appendChild(temp);
     let btn = document.querySelector(".itinerary__songkick button");
-    btn.textContent = "Remove from Itinerary";
+    btn.textContent = "Remove";
     btn.className = "remove-button";
     btn.addEventListener("click", (event) => {
         event.target.parentNode.remove();
