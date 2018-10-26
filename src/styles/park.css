@@ -93,3 +93,15 @@
   border-bottom: 2px dashed black;
   margin: 5px;
 }
+
+#parkRadioContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+.indivBox {
+  display: flex;
+  margin: 10px;
+}
+.indivBox input {
+  order: -1;
+}

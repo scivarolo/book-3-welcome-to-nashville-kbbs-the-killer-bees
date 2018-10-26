@@ -11,6 +11,11 @@ body {
   font-family: "Nunito", sans-serif;
 }
 
+body {
+  background-color: lightcyan;
+  font-family: "Nunito", sans-serif;
+}
+
 .wrapper {
   padding: 20px;
   margin: 0 auto 20px;
