@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="styles/park.css">
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/tix.css">
   <title>Welcome to Nashville</title>
 </head>
 
@@ -22,12 +23,12 @@
       <button id="zomatoInputBtn">Search</button>
     </div>
     <div class="search__songkick">
-      <label for="songkickInput">Search SongKick</label>
-      <input type="text" name="songkickInput" id="songkickInput">
+      <label for="songkickInput">Search Ticketmaster</label>
       <select id="songkickEventTypeSelect" name="songkickInput">
         <option value="music">Music</option>
         <option value="sports">Sports</option>
       </select>
+      <input type="text" name="songkickInput" id="songkickInput">
       <input type="button" id="songkickInputBtn" value="Search">
     </div>
     <div class="search__parks">
@@ -64,7 +65,6 @@
   <!-- End Itinerary Display -->
   <script src="scripts/api-songkick.js"></script>
   <script src="scripts/songkick.js"></script>
-
   <script src="scripts/api-zomato.js"></script>
   <script src="scripts/zomato.js"></script>
   <script src="scripts/api-parks.js"></script>

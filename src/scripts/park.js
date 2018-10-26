@@ -169,7 +169,7 @@ const HTMLPRINT = {
   placeInItin(park) {
     parkPlaceholder.innerHTML = null;
     let outerContainer = document.createElement("section");
-    outerContainer.setAttribute("class", "single-result")
+    outerContainer.setAttribute("class", "single-result");
     let parkTitle = document.createElement("h3");
     parkTitle.innerHTML = park.park_name;
     outerContainer.appendChild(parkTitle);
@@ -224,7 +224,7 @@ const HTMLPRINT = {
       outerContainer.appendChild(parkFeatures);
       let addButton = document.createElement("button");
       addButton.setAttribute("id", park.park_name);
-      addButton.innerHTML = "Add To Itinerary"
+      addButton.innerHTML = "Add To Itinerary";
       addButton.setAttribute("class", "add-button");
       outerContainer.appendChild(addButton);
       parkContainer.appendChild(outerContainer);
