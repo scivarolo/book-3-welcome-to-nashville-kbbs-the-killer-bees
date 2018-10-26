@@ -147,7 +147,11 @@ const HANDLEEVENT = {
     let newEvent = {};
     let stringItinerary = "";
     stringItinerary = document.querySelector(".itinerary__zomato");
-    // for (let i = 0; i < stringItinerary.childNodes.length - 1; i++) {
+    let innerElement = stringItinerary.childNodes;
+    console.log(innerElement);
+    for (let i = 0; i < stringItinerary.childNodes.length; i++) {
+      console.log(stringItinerary.childNodes[i]);
+    };
     //   stringItinerary += stringItinerary.childNodes[i].innerHTML;
     //    // Text, DIV, Text, UL, ..., SCRIPT
     // }
