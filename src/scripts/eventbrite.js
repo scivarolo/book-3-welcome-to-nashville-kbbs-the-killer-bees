@@ -14,16 +14,25 @@ function clearEventbriteSearch(){
 
 // ---EVENTBRITE RESULTS FUNCTIONS---
 // Element Factory to create each of the HTML elements needed to display the results to the DOM
-let elementFactory = (el, content, {clazz, id}, ...children)=>{
+let elementFactory = (el, content, {clazz, id}, type, link, value, target,...children)=>{
   let element = document.createElement(el);
-  element.innerHTML = content || null;
-  children.forEach(child => {
-    element.appendChild(child);
-  });
+  if(el==="input"){
+    element.setAttribute("type", type)
+    element.value = value;
+  } else if(el === "a"){
+    element.href=link;
+    element.setAttribute("target", target)
+  } else{
+    element.innerHTML = content || null;
+    children.forEach(child => {
+      element.appendChild(child);
+    });
+  }
   element.setAttribute("id", id);
   element.setAttribute("class", clazz);
   return element;
 };
+
 
 // Used to reformat date provided via query to readable date
 function getCorrectDate (eventDate){
@@ -32,17 +41,21 @@ function getCorrectDate (eventDate){
   dateFormatted = datearr.join("/");
   return dateFormatted;
 }
-
 // Takes results passed through fetch and calls correct date and element factory functions. Takes returned values and appends them to the results section of the DOM
 function eventbriteQueryResults (eventsar){
   eventsar.forEach(events =>{
     let eventDate = events.start.local;
     getCorrectDate(eventDate);
 
-    let date = elementFactory("h4", dateFormatted, {clazz: null, id: `search-result-date-${events.id}`});
-    let eventName = elementFactory("h3", events.name.text, {clazz: null, id: `search-result-name-${events.id}`});
-    let selectionButton = elementFactory("button", "Add to Itinerary", {clazz: "add-button", id: `button-select-${events.id}`});
-    let eventResult = elementFactory("section", null, {clazz: "single-result", id: `search-result-${events.id}`}, eventName, date, selectionButton);
+    let dateAndVenue = elementFactory("h4", `${dateFormatted} | ${events.venue.name}`, {clazz: null, id: `search-result-date-${events.id}`}, null);
+    let eventName = elementFactory("h3", events.name.text, {clazz: null, id: `search-result-name-${events.id}`}, null);
+    let selectionButton = elementFactory("button", "Add to Itinerary", {clazz: "add-button", id: `button-select-${events.id}`}, null);
+
+    let ticketLink = elementFactory("a", null, {clazz: null, id: null}, null, `${events.url}`, null, "_blank")
+    let ticketButton = elementFactory("input", null, {clazz: "ticket-button", id: `button-tickets-${events.id}`}, "button", null, "Get Tickets")
+    ticketLink.appendChild(ticketButton)
+
+    let eventResult = elementFactory("section", null, {clazz: "single-result", id: `search-result-${events.id}`}, null, null, null, null, eventName, dateAndVenue, ticketLink, selectionButton);
     fragment.appendChild(eventResult);
   });
   eventbriteResults.appendChild(fragment);
@@ -83,4 +96,4 @@ function eventbriteQueryResults (eventsar){
 function pullSelectedElement (ID){
   let eventbriteSelectedResult = document.querySelector(`#search-result-${ID}`);
   populateEventbriteItinerary(eventbriteSelectedResult);
-}
+};
