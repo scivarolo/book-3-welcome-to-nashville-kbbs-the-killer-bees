@@ -25,34 +25,52 @@
         <li class="search-tab">Events</li>
       </ul>
     </nav>
-    <h2 class="section__heading">Search for Something</h2>
+    <h2 class="section__heading search-heading">Search for Something</h2>
     <div class="search__zomato show">
-      <label for="zomatoInput">Search Zomato</label>
-      <input type="text" name="zomatoInput" id="zomatoInput">
-      <button id="zomatoInputBtn">Search</button>
-      <button id="zomatoTrendingBtn">Show Me Trending Restaurants</button>
+      <div>
+        <div class="search-section">
+          <label for="zomatoInput">Search Zomato</label>
+          <input type="text" name="zomatoInput" id="zomatoInput">
+          <button id="zomatoInputBtn">Search</button>
+        </div>
+        <div class="search-section">
+          <button id="zomatoTrendingBtn">Show Me Trending Restaurants</button>
+        </div>
+      </div>
     </div>
     <div class="search__songkick">
-      <label for="songkickInput">Search Ticketmaster</label>
-      <select id="songkickEventTypeSelect" name="songkickInput">
-        <option value="music">Music</option>
-        <option value="sports">Sports</option>
-      </select>
-      <input type="text" name="songkickInput" id="songkickInput">
-      <input type="button" id="songkickInputBtn" value="Search">
+      <div>
+        <div class="search-section">
+          <label for="songkickInput">Search Ticketmaster</label>
+          <select id="songkickEventTypeSelect" name="songkickInput">
+            <option value="music">Music</option>
+            <option value="sports">Sports</option>
+          </select>
+        </div>
+          <div class="search-section">
+          <input type="text" name="songkickInput" id="songkickInput">
+          <input type="button" id="songkickInputBtn" value="Search">
+        </div>
+      </div>
     </div>
     <div class="search__parks">
-      <section id="parkInitialSelector"></section>
-      <section id="parkInputContainer"></section>
-      <section id="parkRadioContainer"></section>
-      <!-- <label for="parksInput">Search Parks</label>
-      <input type="text" name="parksInput" id="parksInput">
-      <button id="parksInputBtn">Search</button> -->
+      <div>
+        <section id="parkInitialSelector"></section>
+        <section id="parkInputContainer"></section>
+        <section id="parkRadioContainer"></section>
+        <!-- <label for="parksInput">Search Parks</label>
+        <input type="text" name="parksInput" id="parksInput">
+        <button id="parksInputBtn">Search</button> -->
+      </div>
     </div>
     <div class="search__eventbrite">
-      <label for="eventbriteInput">Search Eventbrite</label>
-      <input type="text" name="eventbriteInput" id="eventbriteInput">
-      <button id="eventbriteInputBtn">Search</button>
+      <div>
+        <div class="search-section">
+          <label for="eventbriteInput">Search Eventbrite</label>
+          <input type="text" name="eventbriteInput" id="eventbriteInput">
+          <button id="eventbriteInputBtn">Search</button>
+        </div>
+      </div>
     </div>
   </section>
   <!-- End Search Boxes -->

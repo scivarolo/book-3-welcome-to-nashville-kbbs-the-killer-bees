@@ -1,3 +1,6 @@
+:root {
+  --accent: lightseagreen;
+}
 html {
     box-sizing: border-box;
   }
@@ -5,11 +8,6 @@ html {
   *, *:before, *:after {
     box-sizing: inherit;
   }
-
-body {
-  background-color: lightcyan;
-  font-family: "Nunito", sans-serif;
-}
 
 body {
   background-color: lightcyan;
@@ -53,6 +51,25 @@ fieldset {
   border: none;
 }
 
+div[class^="search__"] > div {
+  display: flex;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-heading {
+  text-align: center;
+  margin: 50px;
+  color: var(--accent);
+  font-size: 30px;
+}
+
+.search-section {
+  margin-bottom: 30px;
+}
+
 /*---------- Search Area Nav ----------*/
 
 .search-nav ul {
@@ -66,16 +83,23 @@ fieldset {
   text-align: center;
   background-color: lightgray;
   padding: 20px;
-  transition: .25s ease-in-out background-color;
+  transition: .25s ease-in-out all;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
 }
 
 .search-tab.active {
   background-color: white;
+  color: var(--accent);
 }
 
 .search-tab:not(.active):hover {
-  background-color: lightseagreen;
+  background-color: var(--accent);
+  color: white;
 }
+
+
 
 /*---------- Inputs and Buttons ----------*/
 
@@ -95,7 +119,7 @@ input[type="button"] {
   outline: none;
   height: 30px;
   border-radius: 15px;
-  background-color: lightseagreen;
+  background-color: var(--accent);
   padding: 0 15px;
   color: white;
   font-weight: bold;
