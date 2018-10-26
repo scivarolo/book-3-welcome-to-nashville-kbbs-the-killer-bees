@@ -11,14 +11,14 @@ const API = {
       },
       body: JSON.stringify(temp)
     })
-    // .then(itinerary => itinerary.json())
-    // .then(() => API.getItinerary());
+      .then(itinerary => itinerary.json())
+      .then(() => API.getItinerary())
   },
   getParkData(parkSearchInput) {
     return fetch("https://data.nashville.gov/resource/xbru-cfzi.json")
       .then(parkData => parkData.json())
       .then(parks => {
-          HTMLPRINT.parkPrint(parks);
+        HTMLPRINT.parkPrint(parks);
       });
   },
   getParkDataName(parkSearchInput) {

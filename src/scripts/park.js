@@ -144,26 +144,24 @@ const CLEARPREVIOUS = {
 // This section handles triggered events from the search parks element and from the add to itinerary.
 const HANDLEEVENT = {
   saveToDatabase() {
-    let newEvent = {};
-    let stringItinerary = "";
-    stringItinerary = document.querySelector(".itinerary__zomato");
-    let innerElement = stringItinerary.childNodes;
-    console.log(innerElement);
-    for (let i = 0; i < stringItinerary.childNodes.length; i++) {
-      console.log(stringItinerary.childNodes[i]);
-    };
-    //   stringItinerary += stringItinerary.childNodes[i].innerHTML;
-    //    // Text, DIV, Text, UL, ..., SCRIPT
-    // }
-    newEvent.zomato = stringItinerary;
-    stringItinerary = document.querySelector(".itinerary__songkick").innerHTML;
-    newEvent.songkick = stringItinerary;
-    stringItinerary = document.querySelector(".itinerary__parks").innerHTML;
-    newEvent.parks = stringItinerary;
-    stringItinerary = document.querySelector(".itinerary__meetups").innerHTML;
-    newEvent.meetups = stringItinerary;
-    console.log(newEvent);
-    API.saveItinerary(newEvent);
+    console.log(document.querySelector(".itinerary__zomato").innerHTML);
+    if (document.querySelector(".itinerary__zomato").innerHTML === "" && document.querySelector(".itinerary__songkick").innerHTML === "" && document.querySelector(".itinerary__parks").innerHTML === "" && document.querySelector(".itinerary__eventbrite").innerHTML === "") {
+      alert("Please place at least 1 event in the itinerary to save it.");
+    } else {
+      let newEvent = {};
+      let stringItinerary = "";
+      stringItinerary = document.querySelector(".itinerary__zomato").innerHTML;
+      newEvent.zomato = stringItinerary;
+      stringItinerary = document.querySelector(".itinerary__songkick").innerHTML;
+      newEvent.songkick = stringItinerary;
+      stringItinerary = document.querySelector(".itinerary__parks").innerHTML;
+      newEvent.parks = stringItinerary;
+      stringItinerary = document.querySelector(".itinerary__eventbrite").innerHTML;
+      newEvent.eventbrite = stringItinerary;
+      console.log(newEvent);
+      API.saveItinerary(newEvent).then(itins => itins.forEach(itin => HTMLPRINT.printSaved(itin)));
+      document.getElementById("results").innerHTML = "";
+    }
   },
   parkItin() {
     searchResults.forEach(park => {
@@ -196,25 +194,27 @@ const HANDLEEVENT = {
 // This section handles the creation of html elements and posts to html page.
 const HTMLPRINT = {
   printSaved(itin) {
-    let eachItin = document.createElement("article");
-    eachItin.setAttribute("class", "savedItinEvents");
-    let food = document.createElement("div");
-    food.setAttribute("class", "itinerary__zomato");
-    food.innerHTML = itin.zomato;
-    eachItin.appendChild(food);
-    let music = document.createElement("div");
-    music.setAttribute("class", "itinerary__songkick");
-    music.innerHTML = itin.songkick;
-    eachItin.appendChild(music);
-    let park = document.createElement("div");
-    park.setAttribute("class", "itinerary__parks");
-    park.innerHTML = itin.parks;
-    eachItin.appendChild(park);
-    let meeting = document.createElement("div");
-    meeting.setAttribute("class", "itinerary__meetups");
-    meeting.innerHTML = itin.meetups;
-    eachItin.appendChild(meeting);
-    savedItin.appendChild(eachItin);
+    if (itin !== undefined) {
+      let eachItin = document.createElement("article");
+      eachItin.setAttribute("class", "savedItinEvents");
+      let food = document.createElement("div");
+      food.setAttribute("class", "itinerary__zomato");
+      food.innerHTML = itin.zomato;
+      eachItin.appendChild(food);
+      let music = document.createElement("div");
+      music.setAttribute("class", "itinerary__songkick");
+      music.innerHTML = itin.songkick;
+      eachItin.appendChild(music);
+      let park = document.createElement("div");
+      park.setAttribute("class", "itinerary__parks");
+      park.innerHTML = itin.parks;
+      eachItin.appendChild(park);
+      let meeting = document.createElement("div");
+      meeting.setAttribute("class", "itinerary__eventbrite");
+      meeting.innerHTML = itin.eventbrite;
+      eachItin.appendChild(meeting);
+      savedItin.appendChild(eachItin);
+    }
   },
   createParkSearch() {
     document.getElementById("parkInitialSelector").innerHTML = `
@@ -249,7 +249,7 @@ const HTMLPRINT = {
       });
       let rdContainer = document.getElementById("parkRadioContainer");
       rdContainer.innerHTML = formContent;
-    } else if(event.target.value === "3") {
+    } else if (event.target.value === "3") {
       parkPlaceholder.innerHTML = null;
       document.getElementById("parkInputContainer").innerHTML = null;
       document.getElementById("parkRadioContainer").innerHTML = null;
@@ -258,105 +258,109 @@ const HTMLPRINT = {
       parkPlaceholder.innerHTML = null;
       document.getElementById("parkInputContainer").innerHTML = null;
       document.getElementById("parkRadioContainer").innerHTML = null;
-};
-},
-placeInItin(park) {
-  if (parkItinPlaceholder.innerHTML === "") {
-  parkPlaceholder.innerHTML = null;
-  let outerContainer = document.createElement("section");
-  outerContainer.setAttribute("class", "single-result");
-  let parkTitle = document.createElement("h3");
-  parkTitle.innerHTML = park.park_name;
-  outerContainer.appendChild(parkTitle);
-  let parkAddress = document.createElement("h4");
-  parkAddress.innerHTML = park.mapped_location_address;
-  outerContainer.appendChild(parkAddress);
-  let parkCity = document.createElement("h4");
-  parkCity.innerHTML = `${park.mapped_location_city}, ${park.mapped_location_state}  `;
-  if (park.mapped_location_zip !== undefined) {
-    parkCity.innerHTML += park.mapped_location_zip;
-  };
-  outerContainer.appendChild(parkCity);
-  let removeButton = document.createElement("button");
-  removeButton.setAttribute("id", park.park_name);
-  removeButton.innerHTML = "Remove From Itinerary";
-  removeButton.setAttribute("class", "remove-button");
-  outerContainer.appendChild(removeButton);
-  parkItinPlaceholder.appendChild(outerContainer);
-  ADDLISTENERS.removeItinEvent();
-} else {
-  alert("You already have a parked saved. Please remove the current park and then add a new one.");
-}
-},
-parkPrint(parks) {
-  CLEARPREVIOUS.removeFromInput();
-  searchResults = parks;
-  let parkContainer = document.createDocumentFragment();
-  let searchCount = parks.length;
-  let countString = document.createElement("p");
-  countString.innerHTML = "Your search has " + searchCount + " results.";
-  parkContainer.appendChild(countString);
-  parks.forEach(park => {
-    let outerContainer = document.createElement("section");
-    outerContainer.setAttribute("class", "single-result");
-    let parkTitle = document.createElement("h3");
-    parkTitle.innerHTML = park.park_name;
-    outerContainer.appendChild(parkTitle);
-    let parkAddress = document.createElement("h4");
-    parkAddress.innerHTML = park.mapped_location_address;
-    outerContainer.appendChild(parkAddress);
-    let parkCity = document.createElement("h4");
-    parkCity.innerHTML = `${park.mapped_location_city}, ${park.mapped_location_state}  `;
-    if (park.mapped_location_zip !== undefined) {
-      parkCity.innerHTML += park.mapped_location_zip;
+    };
+  },
+  placeInItin(park) {
+    if (parkItinPlaceholder.innerHTML === "") {
+      parkPlaceholder.innerHTML = null;
+
+      let outerContainer = document.createElement("section");
+      outerContainer.setAttribute("class", "single-result");
+      let parkTitle = document.createElement("h3");
+      parkTitle.innerHTML = park.park_name;
+      outerContainer.appendChild(parkTitle);
+      let parkAddress = document.createElement("h4");
+      parkAddress.innerHTML = park.mapped_location_address;
+      outerContainer.appendChild(parkAddress);
+      let parkCity = document.createElement("h4");
+      parkCity.innerHTML = `${park.mapped_location_city}, ${park.mapped_location_state}  `;
+      if (park.mapped_location_zip !== undefined) {
+        parkCity.innerHTML += park.mapped_location_zip;
+      };
+      outerContainer.appendChild(parkCity);
+      let removeButton = document.createElement("button");
+      removeButton.setAttribute("id", park.park_name);
+      removeButton.innerHTML = "Remove";
+      removeButton.setAttribute("class", "remove-button");
+      outerContainer.appendChild(removeButton);
+      parkItinPlaceholder.appendChild(outerContainer);
+      ADDLISTENERS.removeItinEvent();
+    } else {
+      alert("You already have a parked saved. Please remove the current park and then add a new one.");
     }
-    outerContainer.appendChild(parkCity);
-    let parkFeatures = document.createElement("section");
-    parkFeatures.setAttribute("class", "featuresName");
-    parkFeatures.innerHTML = "Park Features<br>";
-    for (let i = 0; i < features.length; i++) {
-      let feature = features[i];
-      if (park[feature.id] === "Yes") {
-        let indFeature = document.createElement("li");
-        indFeature.setAttribute("class", "featureItem");
-        indFeature.innerHTML = feature.text;
-        parkFeatures.appendChild(indFeature);
+  },
+  parkPrint(parks) {
+
+    // if (document.getElementById("parksInput").value !== null) {
+    //   document.getElementById("parksInput").value = null;
+    // };
+    searchResults = parks;
+    let parkContainer = document.createDocumentFragment();
+    let searchCount = parks.length;
+    let countString = document.createElement("p");
+    countString.innerHTML = "Your search has " + searchCount + " results.";
+    parkContainer.appendChild(countString);
+    parks.forEach(park => {
+      let outerContainer = document.createElement("section");
+      outerContainer.setAttribute("class", "single-result");
+      let parkTitle = document.createElement("h3");
+      parkTitle.innerHTML = park.park_name;
+      outerContainer.appendChild(parkTitle);
+      let parkAddress = document.createElement("h4");
+      parkAddress.innerHTML = park.mapped_location_address;
+      outerContainer.appendChild(parkAddress);
+      let parkCity = document.createElement("h4");
+      parkCity.innerHTML = `${park.mapped_location_city}, ${park.mapped_location_state}  `;
+      if (park.mapped_location_zip !== undefined) {
+        parkCity.innerHTML += park.mapped_location_zip;
       }
-    }
-    outerContainer.appendChild(parkFeatures);
-    let addButton = document.createElement("button");
-    addButton.setAttribute("onclick", "HANDLEEVENT.parkItin()");
-    addButton.setAttribute("id", park.park_name);
-    addButton.innerHTML = "Add To Itinerary";
-    addButton.setAttribute("class", "add-button");
-    outerContainer.appendChild(addButton);
-    parkContainer.appendChild(outerContainer);
-    parkPlaceholder.appendChild(parkContainer);
-  });
-},
-weatherPrint(weather) {
-  let currentWeather = document.createElement("div");
-  currentWeather.setAttribute("id", "forecast");
-  currentWeather.setAttribute("style", `background-image: url("http://openweathermap.org/img/w/${weather.weather[0].icon}.png"); background-size: contain; background-repeat: none`);
-  let weatherStatement = document.createElement("p");
-  weatherStatement.setAttribute("id", "weatherTag");
-  weatherStatement.innerHTML = "Current Conditions For";
-  currentWeather.appendChild(weatherStatement);
-  let cityName = document.createElement("p");
-  cityName.setAttribute("id", "cityName");
-  cityName.innerHTML = weather.name;
-  currentWeather.appendChild(cityName);
-  let currentTemp = (weather.main.temp - 273.15) * 9 / 5 + 32;
-  let tempDisplay = document.createElement("p");
-  tempDisplay.setAttribute("id", "currentCondition");
-  tempDisplay.innerHTML = Math.ceil(currentTemp) + "&deg;";
-  currentWeather.appendChild(tempDisplay);
-  let tempCondition = document.createElement("p");
-  tempCondition.setAttribute("id", "currentCondition");
-  tempCondition.innerHTML = weather.weather[0].main;
-  currentWeather.appendChild(tempCondition);
-  document.body.appendChild(currentWeather);
-}
+      outerContainer.appendChild(parkCity);
+      let parkFeatures = document.createElement("section");
+      parkFeatures.setAttribute("class", "featuresName");
+      parkFeatures.innerHTML = "Park Features<br>";
+      for (let i = 0; i < features.length; i++) {
+        let feature = features[i];
+        if (park[feature.id] === "Yes") {
+          let indFeature = document.createElement("li");
+          indFeature.setAttribute("class", "featureItem");
+          indFeature.innerHTML = feature.text;
+          parkFeatures.appendChild(indFeature);
+        }
+      }
+      outerContainer.appendChild(parkFeatures);
+      let addButton = document.createElement("button");
+      addButton.setAttribute("onclick", "HANDLEEVENT.parkItin()");
+      addButton.setAttribute("id", park.park_name);
+      addButton.innerHTML = "Add to Itinerary";
+      addButton.setAttribute("class", "add-button");
+      outerContainer.appendChild(addButton);
+      parkContainer.appendChild(outerContainer);
+      parkPlaceholder.appendChild(parkContainer);
+    });
+  },
+  weatherPrint(weather) {
+    let currentWeather = document.createElement("div");
+    currentWeather.setAttribute("id", "forecast");
+    currentWeather.setAttribute("style", `background-image: url("http://openweathermap.org/img/w/${weather.weather[0].icon}.png"); background-size: contain; background-repeat: none`);
+    let weatherStatement = document.createElement("p");
+    weatherStatement.setAttribute("id", "weatherTag");
+    weatherStatement.innerHTML = "Current Conditions For";
+    currentWeather.appendChild(weatherStatement);
+    let cityName = document.createElement("p");
+    cityName.setAttribute("id", "cityName");
+    cityName.innerHTML = weather.name;
+    currentWeather.appendChild(cityName);
+    let currentTemp = (weather.main.temp - 273.15) * 9 / 5 + 32;
+    let tempDisplay = document.createElement("p");
+    tempDisplay.setAttribute("id", "currentCondition");
+    tempDisplay.innerHTML = Math.ceil(currentTemp) + "&deg;";
+    currentWeather.appendChild(tempDisplay);
+    let tempCondition = document.createElement("p");
+    tempCondition.setAttribute("id", "currentCondition");
+    tempCondition.innerHTML = weather.weather[0].main;
+    currentWeather.appendChild(tempCondition);
+    document.body.appendChild(currentWeather);
+  }
 };
 
 

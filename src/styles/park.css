@@ -28,6 +28,11 @@
   margin: 0px;
   line-height: .9;
 }
+.parkInput {
+  border: none;
+  padding: 0px;
+  margin: 0px;
+}
 .parkBlock {
   margin: 30px;
   background-color: white;
@@ -73,4 +78,18 @@
   align-items: center;
   text-align: center;
   padding-bottom: 7px;
+}
+#savedItineraries {
+  text-align: center;
+}
+#savedItineraries button {
+  display: none;
+}
+.savedItinEvents {
+  border: 2px solid black;
+  margin: 20px;
+}
+.savedItinEvents div {
+  border-bottom: 2px dashed black;
+  margin: 5px;
 }
