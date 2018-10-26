@@ -263,7 +263,7 @@ const HTMLPRINT = {
   placeInItin(park) {
     if (parkItinPlaceholder.innerHTML === "") {
       parkPlaceholder.innerHTML = null;
-
+      document.getElementById("parkRadioContainer").innerHTML = null;
       let outerContainer = document.createElement("section");
       outerContainer.setAttribute("class", "single-result");
       let parkTitle = document.createElement("h3");
