@@ -41,7 +41,7 @@ function eventbriteQueryResults (eventsar){
 
     let date = elementFactory("h4", dateFormatted, {clazz: null, id: `search-result-date-${events.id}`});
     let eventName = elementFactory("h3", events.name.text, {clazz: null, id: `search-result-name-${events.id}`});
-    let selectionButton = elementFactory("button", "Save", {clazz: "add-button", id: `button-select-${events.id}`});
+    let selectionButton = elementFactory("button", "Add to Itinerary", {clazz: "add-button", id: `button-select-${events.id}`});
     let eventResult = elementFactory("section", null, {clazz: "single-result", id: `search-result-${events.id}`}, eventName, date, selectionButton);
     fragment.appendChild(eventResult);
   });
@@ -56,14 +56,26 @@ function eventbriteQueryResults (eventsar){
   }
 
   // ---EVENTBRITE ITINERARY FUNCTIONS---
+  function eventbriteButtonChanges (){
+    let button = document.querySelector(".itinerary__eventbrite button")
+    button.textContent = "Remove";
+    button.classList.remove("add-button");
+    button.classList.add("remove-button");
+    button.addEventListener("click", (event)=>{
+      event.target.parentNode.remove()
+    })
+  }
+
   function populateEventbriteItinerary(result){
     let eventbriteItinerary = document.querySelector(".itinerary__eventbrite");
     if (eventbriteItinerary === ""){
       eventbriteItinerary.appendChild(result);
+      eventbriteButtonChanges();
       clearEventbriteResults();
     } else {
       eventbriteItinerary.innerHTML = "";
       eventbriteItinerary.appendChild(result);
+      eventbriteButtonChanges();
       clearEventbriteResults();
     }
   }

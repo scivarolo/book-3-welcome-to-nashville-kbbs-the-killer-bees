@@ -14,7 +14,7 @@ let eventbriteCategoryMatch = (input) => {
       // else if( eventbriteInput !== categories[i].name){
       //   alert("Please try searching for a specific type of event, such as 'Music', 'Business & Professional', or 'Performing & Visual Arts'");
       // }
-      if (eventbriteInput === categories[i].name){
+      if (eventbriteInput.toLowerCase() === categories[i].name.toLowerCase()){
         eventbriteQuery(categories[i].id);
       }
     }
