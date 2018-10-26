@@ -29,10 +29,13 @@ const findGenreId = () => {
     // this converts the text input to uppercase
     let genreInputText = genreInput.toUpperCase();
     genreInputText.toUpper;
-    // the following sends the selected values to the api query
+    // the following function sends the selected values to the api query
     genreArray.forEach(genreArrayObject => {
         if(genreArrayObject.name === genreInputText) {
             genreId = genreArrayObject.id;
+            // the following clears the events array and results from the DOM
+            eventAndDate = [];
+            songkickResults.innerHTML = "";
             ticketmasterFetch(genreSelectType, genreId);
         }
     });
@@ -46,9 +49,9 @@ const clickEventBtn = () => {
     findGenreId();
 };
 
-const eventAndDate = [];
+// the following array is created from the api results
+let eventAndDate = [];
 const allEvents = (returnedEvents) => {
-    console.log(returnedEvents);
     returnedEvents._embedded.events.forEach(element => {
         let currentEvent = {};
         currentEvent.id = element.id;
@@ -59,7 +62,6 @@ const allEvents = (returnedEvents) => {
         currentEvent.image = element.images[0].url;
         eventAndDate.push(currentEvent);
     });
-    console.log("Event and date: ", eventAndDate);
     makeComponentFromArray(eventAndDate);
 };
 
@@ -80,7 +82,7 @@ function makeComponentFromArray(array){
         newEntry.className = "single-result shadow";
         let eventImage = `<div><img src="${event.image}" alt="${event.name}" width="200"></img></div>`;
         let eventName = `<h3>${event.name}</h3>`;
-        // let eventDateAndVenue =`<h4><strong>${event.date}:</strong> ${event.venue}</h4>`;
+        // the following line contains the reformatted date
         let eventDateAndVenue =`<h4><strong>${dateFormatted}:</strong> ${event.venue}</h4>`;
         let eventLink = `<p><a href="${event.url}" target=”_blank” class="buyTix">Buy Tickets</a></p>`;
         let addToItineraryBtn = `<button id="${event.id}" name="event" value="${event.id}" class="add-button">Add to Itinerary</button>`;
@@ -106,13 +108,12 @@ function addEventToItinerary(temp){
             event.target.parentNode.remove();
         });
     } else {
-        alert("You've already added an event to this category.");
+        alert("You've already added an event to this category.\nYour current selection will be replace the prior one.");
         songkickResults.innerHTML = "";
         songkickItinerary.innerHTML = "";
         songkickItinerary.appendChild(temp);
     };
 };
-
 
 
 let genreSearchBtn = document.getElementById("songkickInputBtn");
