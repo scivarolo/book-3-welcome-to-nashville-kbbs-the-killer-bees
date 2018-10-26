@@ -55,7 +55,7 @@ function eventbriteQueryResults (eventsar){
     let ticketButton = elementFactory("input", null, {clazz: "ticket-button", id: `button-tickets-${events.id}`}, "button", null, "Get Tickets")
     ticketLink.appendChild(ticketButton)
 
-    let eventResult = elementFactory("section", null, {clazz: "single-result", id: `search-result-${events.id}`}, null, null, null, null, eventName, dateAndVenue, selectionButton, ticketLink);
+    let eventResult = elementFactory("section", null, {clazz: "single-result", id: `search-result-${events.id}`}, null, null, null, null, eventName, dateAndVenue, ticketLink, selectionButton);
     fragment.appendChild(eventResult);
   });
   eventbriteResults.appendChild(fragment);
