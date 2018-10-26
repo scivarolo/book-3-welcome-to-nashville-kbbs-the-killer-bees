@@ -23,7 +23,7 @@ let eventbriteCategoryMatch = (input) => {
 
 let eventbriteQuery = (categoryId)=> {
   let eventbriteCategoryId = categoryId;
-  fetch(`https://www.eventbriteapi.com/v3/events/search/?location.latitude=36.174465&location.longitude=-86.767960&sort_by=date&categories=${eventbriteCategoryId}`, {
+  fetch(`https://www.eventbriteapi.com/v3/events/search/?location.latitude=36.174465&location.longitude=-86.767960&sort_by=date&expand=venue&categories=${eventbriteCategoryId}`, {
     headers: {
       "Authorization": "Bearer YYBDMC5M4VVDSX36DL6Y"
     }
@@ -31,7 +31,8 @@ let eventbriteQuery = (categoryId)=> {
   .then((eventdata) => eventdata.events)
   .then((events)=> {
     eventbriteAllEvents.push(events);
-    console.log(allEvents)
+    console.log(eventbriteAllEvents)
     eventbriteAllEvents.forEach(event=> eventbriteQueryResults(event));
   });
 };
+
