@@ -1,4 +1,4 @@
-// MUSIC EVENTS
+// EVENTS ARRAY WITH GENRE ID
 let genreId = "";
 const genreArray = [
     {id: "KnvZfZ7vAeA", name: "ROCK"},
@@ -16,19 +16,20 @@ const genreArray = [
     {id: "", name: "ALL"},
 ];
 
+// the following function evaluates the search input takes the event type dropdown value and text input and sends it to the api query
 const findGenreId = () => {
     let genreInput = document.getElementById("songkickInput").value;
     let genreSelectType = document.getElementById("songkickEventTypeSelect").value;
+    // this evaluates the text input and throws an alert if empty
     if (genreInput === "" && genreSelectType === "music") {
         alert("Please enter a genre to search.\nTry 'country' or 'rock' or 'rap', etc.\nIf you're up for anything, just type 'all'");
       } else if (genreInput === "" && genreSelectType === "sports") {
         alert("Please enter a sport to search.\nTry 'football' or 'hockey', etc.\nIf you're up for anything, just type 'all'");
       } else {
-    console.log("Select Type: ", genreSelectType);
-    console.log(genreInput);
+    // this converts the text input to uppercase
     let genreInputText = genreInput.toUpperCase();
     genreInputText.toUpper;
-    console.log(genreInputText);
+    // the following sends the selected values to the api query
     genreArray.forEach(genreArrayObject => {
         if(genreArrayObject.name === genreInputText) {
             genreId = genreArrayObject.id;
@@ -112,20 +113,6 @@ function addEventToItinerary(temp){
     };
 };
 
-
-
-
-// function makeResults(){
-//     songkickResults.innerHTML = "";
-//     let eventSelected = eventSelections.value;
-//     if(eventSelected === "music"){
-//         console.log("you selected music");
-//         makeComponentFromArray(eventAndDate);
-//     }
-//     else if(eventSelected === "sports"){
-//         console.log("you selected sports");
-//     }
-// }
 
 
 let genreSearchBtn = document.getElementById("songkickInputBtn");
