@@ -1,5 +1,5 @@
 // API Fetch Commands
-let allEvents = [];
+let eventbriteAllEvents = [];
 
 let eventbriteCategoryMatch = (input) => {
 
@@ -30,8 +30,8 @@ let eventbriteQuery = (categoryId)=> {
   }).then((eventdata) => eventdata.json())
   .then((eventdata) => eventdata.events)
   .then((events)=> {
-    allEvents.push(events);
+    eventbriteAllEvents.push(events);
     console.log(allEvents)
-    allEvents.forEach(event=> eventbriteQueryResults(event));
+    eventbriteAllEvents.forEach(event=> eventbriteQueryResults(event));
   });
 };
