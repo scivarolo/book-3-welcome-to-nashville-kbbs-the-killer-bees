@@ -1,0 +1,23 @@
+#welcome{
+  width: 400px;
+  height: 600px;
+  position: relative;
+  background-color: purple;
+  display: flex;
+  flex-direction: column;
+}
+
+/* .welcomeInformation{
+  text-align: center;
+  /* vertical-align: middle; */
+  /* position: absolute;
+  margin: 0 auto;
+  top: 50%; */
+/* } */
+
+.welcomeInformation{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
