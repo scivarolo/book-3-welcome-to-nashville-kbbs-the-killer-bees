@@ -1,5 +1,5 @@
 const zomatoAPI = {
-  baseUrl: "https://developers.zomato.com/api/v2.1/search?entity_id=1138&entity_type=city&count=5&q=",
+  baseUrl: "https://developers.zomato.com/api/v2.1/search?entity_id=1138&entity_type=city&count=10&sort=rating&order=desc",
   request: function (queryString) {
     let url = this.baseUrl + queryString;
     return fetch(url, {
