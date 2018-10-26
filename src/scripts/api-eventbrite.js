@@ -8,13 +8,13 @@ let eventbriteCategoryMatch = (input) => {
   .then((categories)=> categories.json())
   .then((categories) => {
     for( let i = 0; i <categories.length; i++ ){
-      if(eventbriteInput === ""){
-        alert("Please enter a category of event to search");
-      }
+      // if(eventbriteInput === ""){
+      //   alert("Please enter a category of event to search");
+      // }
       // else if( eventbriteInput !== categories[i].name){
       //   alert("Please try searching for a specific type of event, such as 'Music', 'Business & Professional', or 'Performing & Visual Arts'");
       // }
-      else if (eventbriteInput === categories[i].name){
+      if (eventbriteInput === categories[i].name){
         eventbriteQuery(categories[i].id);
       }
     }
@@ -31,6 +31,7 @@ let eventbriteQuery = (categoryId)=> {
   .then((eventdata) => eventdata.events)
   .then((events)=> {
     allEvents.push(events);
+    console.log(allEvents)
     allEvents.forEach(event=> eventbriteQueryResults(event));
   });
 };
