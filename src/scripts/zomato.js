@@ -44,6 +44,10 @@ function addToItinEventListeners() {
   });
 }
 
+function clearZomatoResults() {
+  zomatoResultsSection.innerHTML = "";
+}
+
 // Output desired restaurant to the Itinerary section
 function zomatoAddToItinerary(clickedButton) {
   let desiredRestaurant = clickedButton.parentNode;
@@ -57,4 +61,5 @@ function zomatoAddToItinerary(clickedButton) {
   button.addEventListener("click", (event) => {
     event.target.parentNode.remove();
   });
+  clearZomatoResults();
 }
