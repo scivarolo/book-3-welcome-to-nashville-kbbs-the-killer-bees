@@ -34,12 +34,14 @@ body {
 
 /*---------- Search Area ----------*/
 
-div[class^="search__"] {
+div[class^="search__"],
+div[class^="results__"] {
   margin-bottom: 20px;
   display: none;
 }
 
-div[class^="search__"].show {
+div[class^="search__"].show,
+div[class^="results__"].show {
   display: block;
 }
 
