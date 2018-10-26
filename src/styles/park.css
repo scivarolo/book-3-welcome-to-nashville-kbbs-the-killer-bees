@@ -63,17 +63,14 @@
   padding: 10px;
   line-height: 0px;
 }
-.addButton{
+#parkRadioContainer {
   text-align: center;
-  background-color: rgb(248, 109, 109);
-  color: white;
-  padding: 4px;
-  font-size: 23px;
-  font-weight: bold;
-  margin: 5px;
-  border: 3px solid black;
-  border-radius: 20px;
 }
-.addButton:hover{
-  background-color: red;
+.indivBox {
+  width: 77px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 7px;
 }
