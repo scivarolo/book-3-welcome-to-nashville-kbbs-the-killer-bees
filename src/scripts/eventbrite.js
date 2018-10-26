@@ -134,13 +134,13 @@ function eventbriteQueryResults (eventsar){
 
   // ---EVENTBRITE ITINERARY FUNCTIONS---
   function eventbriteButtonChanges (){
-    let button = document.querySelector(".itinerary__eventbrite button")
+    let button = document.querySelector(".itinerary__eventbrite button");
     button.textContent = "Remove";
     button.classList.remove("add-button");
     button.classList.add("remove-button");
     button.addEventListener("click", (event)=>{
-      event.target.parentNode.remove()
-    })
+      event.target.parentNode.remove();
+    });
   }
 
   function populateEventbriteItinerary(result){

@@ -31,7 +31,7 @@ let eventbriteQuery = (categoryId)=> {
   .then((eventdata) => eventdata.events)
   .then((events)=> {
     eventbriteAllEvents.push(events);
-    console.log(eventbriteAllEvents)
+    // console.log(eventbriteAllEvents)
     eventbriteAllEvents.forEach(event=> eventbriteQueryResults(event));
   });
 };
