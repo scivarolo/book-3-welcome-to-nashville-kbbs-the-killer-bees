@@ -24,6 +24,8 @@ const API = {
       .then(parks => {
         if (parks.length === 0) {
           alert("There isn't a park with those specific features. Please reset the search and try again.");
+          document.getElementById("parkRadioContainer").innerHTML = null;
+          HTMLPRINT.createParkSearch();
         } else {
           HTMLPRINT.parkPrint(parks);
         }

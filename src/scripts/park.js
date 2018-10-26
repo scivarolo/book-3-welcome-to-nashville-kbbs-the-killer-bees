@@ -18,7 +18,7 @@ const features = [
     text: "Boat Launch"
   },
   {
-    id: "camping_available",
+    id: "camping_available_by_permit",
     text: "Camping"
   },
   {
@@ -217,6 +217,7 @@ const HTMLPRINT = {
 };
 },
 placeInItin(park) {
+  if (parkItinPlaceholder.innerHTML === "") {
   parkPlaceholder.innerHTML = null;
   let outerContainer = document.createElement("section");
   outerContainer.setAttribute("class", "single-result");
@@ -239,6 +240,9 @@ placeInItin(park) {
   outerContainer.appendChild(removeButton);
   parkItinPlaceholder.appendChild(outerContainer);
   ADDLISTENERS.removeItinEvent();
+} else {
+  alert("You already have a parked saved. Please remove the current park and then add a new one.");
+}
 },
 parkPrint(parks) {
   CLEARPREVIOUS.removeFromInput();
