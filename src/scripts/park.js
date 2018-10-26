@@ -144,7 +144,6 @@ const CLEARPREVIOUS = {
 // This section handles triggered events from the search parks element and from the add to itinerary.
 const HANDLEEVENT = {
   saveToDatabase() {
-    console.log(document.querySelector(".itinerary__zomato").innerHTML);
     if (document.querySelector(".itinerary__zomato").innerHTML === "" && document.querySelector(".itinerary__songkick").innerHTML === "" && document.querySelector(".itinerary__parks").innerHTML === "" && document.querySelector(".itinerary__eventbrite").innerHTML === "") {
       alert("Please place at least 1 event in the itinerary to save it.");
     } else {
@@ -158,8 +157,8 @@ const HANDLEEVENT = {
       newEvent.parks = stringItinerary;
       stringItinerary = document.querySelector(".itinerary__eventbrite").innerHTML;
       newEvent.eventbrite = stringItinerary;
-      console.log(newEvent);
       API.saveItinerary(newEvent).then(itins => {
+        parkItinPlaceholder.innerHTML = null;
         savedItin.innerHTML = null;
         itins.forEach(itin => HTMLPRINT.printSaved(itin))
       });

@@ -4,8 +4,6 @@ let eventbriteResults = document.querySelector(".results__eventbrite");
 let fragment = document.createDocumentFragment();
 let eventbriteSearchValue = document.getElementById("eventbriteInput");
 let dateFormatted = " ";
-// let testImage = document.getElementById("image__test")
-// console.log(testImage)
 
 
 // ---EVENTBRITE SEARCH FUNCTIONS---
@@ -43,73 +41,11 @@ function getCorrectDate (eventDate){
   dateFormatted = datearr.join("/");
   return dateFormatted;
 }
-
-// Description.text
-// start time, end time
-// start.local substring(11,15)
-// end.local substring (11, 15), will need to translate this into traditional hours instead of military clock
-// is_free
-// Look at ways to refactor the search options
-
-// function getCorrectTime(startTime, endTime){
-//   let eventStartTime = `${startTime}`.substring(11,16).split(":");
-//   let eventEndTime = `${endTime}`.substring(11,16).split(":")
-//   let morningEvening = "";
-//   console.log(eventStartTime);
-//   updatingStartTime(eventStartTime);
-//   // console.log(eventEndTime);
-//   function updatingStartTime(startTime){
-//     console.log(startTime)
-//     if(startTime[0]>12){
-//       let adjustedHour= startTime[0]-12
-//       console.log(adjustedHour)
-//       let adjustedMinute = startTime[1]
-//       console.log(adjustedMinute)
-//       morningEvening = "p.m."
-//       let adjustedTime = `${adjustedHour}:${adjustedMinute}${morningEvening}`
-//       console.log(adjustedTime)
-//       return adjustedTime
-//     } else if(startTime[0] <12){
-//       let existingHour = startTime[0]
-//       console.log(existingHour)
-//       let existingMinute = startTime[1]
-//       console.log(existingMinute)
-//       morningEvening = "a.m."
-//       let existingTime = `${existingHour}:${existingMinute}${morningEvening}`
-//       console.log(adjustedTime)
-//       return existingTime
-//     }
-  // }
-  // function updatingEndTime(endTime){
-  //   if(endTime[0]>12){
-  //     let adjustedHour= endTime[0]-12
-  //     console.log(adjustedHour)
-  //     let adjustedMinute = endTime[1]
-  //     console.log(adjustedMinute)
-  //     morningEvening = "p.m."
-  //     let adjustedTime = `${adjustedHour}:${adjustedMinute}${morningEvening}`
-  //     return adjustedTime
-  //   } else if(endTime[0] <12){
-  //     let existingHour = endTime[0]
-  //     console.log(existingHour)
-  //     let existingMinute = endTime[1]
-  //     console.log(existingMinute)
-  //     morningEvening = "a.m."
-  //     let existingTime = `${existingHour}:${existingMinute}${morningEvening}`
-  //     return existingTime
-  //   }
-  // }
-// }
-
-
 // Takes results passed through fetch and calls correct date and element factory functions. Takes returned values and appends them to the results section of the DOM
 function eventbriteQueryResults (eventsar){
   eventsar.forEach(events =>{
     let eventDate = events.start.local;
     getCorrectDate(eventDate);
-    // let startTime = events.start.local;
-    // let endTime = events.end.local;
-    // getCorrectTime(startTime, endTime);
 
     let dateAndVenue = elementFactory("h4", `${dateFormatted} | ${events.venue.name}`, {clazz: null, id: `search-result-date-${events.id}`}, null);
     let eventName = elementFactory("h3", events.name.text, {clazz: null, id: `search-result-name-${events.id}`}, null);
@@ -119,7 +55,7 @@ function eventbriteQueryResults (eventsar){
     let ticketButton = elementFactory("input", null, {clazz: "ticket-button", id: `button-tickets-${events.id}`}, "button", null, "Get Tickets")
     ticketLink.appendChild(ticketButton)
 
-    let eventResult = elementFactory("section", null, {clazz: "single-result", id: `search-result-${events.id}`}, null, null, null, null, eventName, dateAndVenue, selectionButton, ticketLink);
+    let eventResult = elementFactory("section", null, {clazz: "single-result", id: `search-result-${events.id}`}, null, null, null, null, eventName, dateAndVenue, ticketLink, selectionButton);
     fragment.appendChild(eventResult);
   });
   eventbriteResults.appendChild(fragment);
