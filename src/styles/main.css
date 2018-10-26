@@ -42,6 +42,10 @@ div[class^="search__"] label {
   display: block;
 }
 
+fieldset {
+  border: none;
+}
+
 /*---------- Search Area Nav ----------*/
 
 .search-nav ul {
