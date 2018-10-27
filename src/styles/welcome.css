@@ -5,6 +5,7 @@
   background-color: purple;
   display: flex;
   flex-direction: column;
+  visibility: hidden;
 }
 
 /* .welcomeInformation{
@@ -16,6 +17,7 @@
 /* } */
 
 .welcomeInformation{
+  visibility: hidden;
   display: flex;
   align-items: center;
   justify-content: center;

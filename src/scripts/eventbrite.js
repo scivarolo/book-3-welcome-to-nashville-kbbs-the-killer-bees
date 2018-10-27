@@ -4,6 +4,14 @@ let eventbriteResults = document.querySelector(".results__eventbrite");
 let fragment = document.createDocumentFragment();
 let eventbriteSearchValue = document.getElementById("eventbriteInput");
 let dateFormatted = " ";
+let timeFormatted = " ";
+let updatedTime = " ";
+let updatedHour = " ";
+let eventStart = [];
+let eventEnd = [];
+let startTimeFormatted = " ";
+let endTimeFormatted = " ";
+let eventAddressAndVenue = " ";
 
 
 // ---EVENTBRITE SEARCH FUNCTIONS---
@@ -33,6 +41,8 @@ let elementFactory = (el, content, {clazz, id}, type, link, value, target,...chi
   return element;
 };
 
+// TO DO: Get event organizer logo to populate in results. Get alert message to appear if initial search input is blank
+
 
 // Used to reformat date provided via query to readable date
 function getCorrectDate (eventDate){
@@ -41,21 +51,87 @@ function getCorrectDate (eventDate){
   dateFormatted = datearr.join("/");
   return dateFormatted;
 }
+
+// Used to pass start time array to getCorrectTime function and hold the results in a new variable
+function passEventStart(){
+  eventStart.forEach((event)=>{
+    getCorrectTime(event);
+  })
+  startTimeFormatted = timeFormatted;
+  return startTimeFormatted;
+}
+
+// Used to pass end time array to getCorrectTime function and hold the results in a new variable
+function passEventEnd(){
+  eventEnd.forEach((event)=>{
+    getCorrectTime(event);
+  })
+  endTimeFormatted = timeFormatted;
+  return endTimeFormatted
+}
+
+// Used to reformat time provided via query to readable time
+function getCorrectTime(eventTime){
+  let timeArr = `${eventTime}`.substring(11,16).split(":")
+  let morningEvening= "am";
+  if(timeArr[0] > 12){
+    timeArr[0] = (timeArr[0]-12);
+    morningEvening = "pm"
+  } else if(timeArr[0] === 0){
+    timeArr[0] = 12;
+  }else{
+    timeArr[0] = timeArr[0].substring(1)
+  }
+  updatedTime = timeArr.join(":");
+  timeArr = [];
+  timeArr.unshift(updatedTime, morningEvening)
+  timeFormatted = timeArr.join(" ");
+  return timeFormatted
+}
+
+// Used to filter through venue information and prevent any null responses from displaying in the DOM
+function vettingVenue(eventVenue, eventAddressArr){
+  if(eventVenue === " " || eventVenue === null){
+    eventAddressAndVenue = elementFactory("p", eventAddressArr, {clazz: null, id: null}, null, null, null, null)
+  } else{
+    eventAddressAndVenue = elementFactory("p", `${eventVenue} | ${eventAddressArr}`, {clazz: null, id: null}, null, null, null, null)
+  }
+  return eventAddressAndVenue;
+}
+
 // Takes results passed through fetch and calls correct date and element factory functions. Takes returned values and appends them to the results section of the DOM
 function eventbriteQueryResults (eventsar){
   eventsar.forEach(events =>{
+    // Event Date
     let eventDate = events.start.local;
     getCorrectDate(eventDate);
 
-    let dateAndVenue = elementFactory("h4", `${dateFormatted} | ${events.venue.name}`, {clazz: null, id: `search-result-date-${events.id}`}, null);
-    let eventName = elementFactory("h3", events.name.text, {clazz: null, id: `search-result-name-${events.id}`}, null);
-    let selectionButton = elementFactory("button", "Add to Itinerary", {clazz: "add-button", id: `button-select-${events.id}`}, null);
+    // Event Start and End Time
+    eventStart.push(events.start.local);
+    eventEnd.push(events.end.local);
+    passEventStart();
+    passEventEnd();
+    let dateAndTime = elementFactory("h4", `${dateFormatted} | ${startTimeFormatted}-${endTimeFormatted}`, {clazz: null, id: `search-result-date-${events.id}`}, null)
 
+    // Event Venue and Address
+    let eventAddressArr = events.venue.address.localized_multi_line_address_display;
+    let eventVenue = events.venue.name;
+    vettingVenue(eventVenue, eventAddressArr);
+    let eventAddress = eventAddressAndVenue;
+
+    // Get tickets link and button
     let ticketLink = elementFactory("a", null, {clazz: null, id: null}, null, `${events.url}`, null, "_blank")
     let ticketButton = elementFactory("input", null, {clazz: "ticket-button", id: `button-tickets-${events.id}`}, "button", null, "Get Tickets")
     ticketLink.appendChild(ticketButton)
 
-    let eventResult = elementFactory("section", null, {clazz: "single-result", id: `search-result-${events.id}`}, null, null, null, null, eventName, dateAndVenue, ticketLink, selectionButton);
+    // Event Name
+    let eventName = elementFactory("h3", events.name.text, {clazz: null, id: `search-result-name-${events.id}`}, null);
+
+    // Add to itinerary button
+    let selectionButton = elementFactory("button", "Add to Itinerary", {clazz: "add-button", id: `button-select-${events.id}`}, null);
+
+    // Individual Result Wrapper Section
+    let eventResult = elementFactory("section", null, {clazz: "single-result", id: `search-result-${events.id}`}, null, null, null, null, eventName, dateAndTime, eventAddress, ticketLink, selectionButton);
     fragment.appendChild(eventResult);
   });
   eventbriteResults.appendChild(fragment);
