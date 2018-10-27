@@ -76,7 +76,7 @@ function makeComponentFromArray(array){
     array.forEach(event => {
         // reformat date function
         let reformattedDate = event.date;
-        getCorrectDate(reformattedDate)
+        getCorrectDate(reformattedDate);
 
         let newEntry = document.createElement("section");
         newEntry.className = "single-result shadow";

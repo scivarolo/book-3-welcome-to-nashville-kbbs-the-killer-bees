@@ -17,7 +17,7 @@ function switchSearchTabs(clickEvent) {
   if (clickedTab.textContent === "Restaurants") {
     searchSections[0].classList.add("show");
   }
-  if (clickedTab.textContent === "Concerts") {
+  if (clickedTab.textContent === "Music/Sports") {
     searchSections[1].classList.add("show");
   }
   if (clickedTab.textContent === "Parks") {
