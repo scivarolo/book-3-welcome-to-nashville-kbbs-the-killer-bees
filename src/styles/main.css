@@ -11,6 +11,7 @@ html {
   }
 
 body {
+  margin: 0;
   background-color: rgb(245, 245, 250);
   font-family: "Nunito", sans-serif;
 }
@@ -76,4 +77,22 @@ input[type="button"]:hover  {
 
 .wrapper--itinerary > button {
   margin-top: 20px;
+}
+
+.hide {
+  display: none;
+}
+
+/*---------- Header/Footer ----------*/
+.header__div {
+  margin: auto;
+  max-width: 800px;
+  text-align: center;
+}
+.footer__div {
+  background: white;
+  border-top: 1px solid gray;
+  margin: auto;
+  max-width: 800px;
+  text-align: left;
 }
