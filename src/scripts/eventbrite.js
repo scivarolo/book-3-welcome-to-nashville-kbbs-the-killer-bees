@@ -112,7 +112,8 @@ function eventbriteQueryResults (eventsar){
     let dateAndTime = elementFactory("h4", `${dateFormatted} | ${startTimeFormatted}-${endTimeFormatted}`, {clazz: null, id: `search-result-date-${events.id}`}, null)
 
     // Event Venue and Address
-    let eventAddressArr = events.venue.address.localized_multi_line_address_display;
+    let eventAddressArr = events.venue.address.localized_multi_line_address_display.join(" ");
+    console.log(eventAddressArr)
     let eventVenue = events.venue.name;
     vettingVenue(eventVenue, eventAddressArr);
     let eventAddress = eventAddressAndVenue;
