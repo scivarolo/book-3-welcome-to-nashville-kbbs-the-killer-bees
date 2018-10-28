@@ -1,5 +1,6 @@
 let searchNav = document.querySelectorAll(".search-tab");
 let searchSections = document.querySelectorAll("[class^='search__']");
+let searchHeading = document.querySelector(".search-heading");
 console.log(searchSections);
 searchNav.forEach(tab => {
   tab.addEventListener("click", (event) => {
@@ -18,17 +19,21 @@ function switchSearchTabs(clickEvent) {
   if (clickedTab.textContent === "Restaurants") {
     searchSections[0].classList.add("show");
     document.querySelector(".results__zomato").classList.add("show");
+    // searchHeading.textContent = "Find Somewhere to Eat";
   }
   if (clickedTab.textContent === "Music/Sports") {
     searchSections[1].classList.add("show");
     document.querySelector(".results__songkick").classList.add("show");
+    // searchHeading.textContent = "Find a Show or Sporting Event";
   }
   if (clickedTab.textContent === "Parks") {
     searchSections[2].classList.add("show");
     document.querySelector(".results__parks").classList.add("show");
+    // searchHeading.textContent = "Find a Park";
   }
   if (clickedTab.textContent === "Events") {
     searchSections[3].classList.add("show");
     document.querySelector(".results__eventbrite").classList.add("show");
+    // searchHeading.textContent = "Find an Event";
   }
 }
