@@ -90,7 +90,6 @@ function makeComponentFromArray(array){
         newEntry.innerHTML = entryContents;
         resultsSection.classList.remove("hidden");
         songkickResults.appendChild(newEntry);
-        // console.log(newEntry);
         let addButton = document.getElementById(`${event.id}`);
         addButton.addEventListener("click", function addEventToItineraryFunction(){
             addEventToItinerary(newEntry);
