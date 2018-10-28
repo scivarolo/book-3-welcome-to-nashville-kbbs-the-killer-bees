@@ -84,7 +84,7 @@ function makeComponentFromArray(array){
         let eventName = `<h3>${event.name}</h3>`;
         // the following line contains the reformatted date
         let eventDateAndVenue =`<h4><strong>${dateFormatted}:</strong> ${event.venue}</h4>`;
-        let eventLink = `<p><a href="${event.url}" target=”_blank” class="buyTix">Buy Tickets</a></p>`;
+        let eventLink= `<p><a href="${event.url}" target="_blank" id="null" class="null"><input type="button" value="Get Tickets" class="ticket-button"></a></p>`;
         let addToItineraryBtn = `<button id="${event.id}" name="event" value="${event.id}" class="add-button">Add to Itinerary</button>`;
         let entryContents = `${eventImage}${eventName}${eventDateAndVenue}${eventLink}${addToItineraryBtn}`;
         newEntry.innerHTML = entryContents;
