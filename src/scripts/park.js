@@ -292,10 +292,6 @@ const HTMLPRINT = {
     }
   },
   parkPrint(parks) {
-
-    // if (document.getElementById("parksInput").value !== null) {
-    //   document.getElementById("parksInput").value = null;
-    // };
     searchResults = parks;
     let parkContainer = document.createDocumentFragment();
     let searchCount = parks.length;
@@ -325,7 +321,7 @@ const HTMLPRINT = {
         if (park[feature.id] === "Yes") {
           let indFeature = document.createElement("li");
           indFeature.setAttribute("class", "featureItem");
-          indFeature.innerHTML = feature.text;
+          indFeature.innerHTML = "&bigstar;" + feature.text;
           parkFeatures.appendChild(indFeature);
         }
       }
