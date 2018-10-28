@@ -41,8 +41,6 @@ let elementFactory = (el, content, {clazz, id}, type, link, value, target,...chi
   return element;
 };
 
-// TO DO: Get event organizer logo to populate in results. Get alert message to appear if initial search input is blank
-
 
 // Used to reformat date provided via query to readable date
 function getCorrectDate (eventDate){
