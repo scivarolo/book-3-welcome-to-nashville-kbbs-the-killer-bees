@@ -17,6 +17,7 @@ div[class^="search__"] label {
 
 fieldset {
   border: none;
+  padding: 0;
 }
 
 div[class^="search__"] > div {
