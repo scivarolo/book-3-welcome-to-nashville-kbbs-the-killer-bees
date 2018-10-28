@@ -7,6 +7,7 @@ html {
   }
 
 body {
+  margin: 0;
   background-color: lightcyan;
   font-family: "Nunito", sans-serif;
 }
@@ -108,4 +109,18 @@ input[type="button"]:active {
 
 .hide {
   display: none;
+}
+
+/*---------- Header/Footer ----------*/
+.header__div {
+  margin: auto;
+  max-width: 800px;
+  text-align: center;
+}
+.footer__div {
+  background: white;
+  border-top: 1px solid gray;
+  margin: auto;
+  max-width: 800px;
+  text-align: left;
 }
