@@ -27,28 +27,55 @@
 /* Popup container */
 #welcome {
   position: relative;
-  display: inline-block;
+  /* display: block; */
   cursor: pointer;
-  background-color: purple;
-  width: 400px;
-  height: 600px;
+  /* width: 80%; */
   z-index: 1;
 }
 
+#welcomePageWrapper{
+  width: 80%;
+  height: 600px;
+  margin: auto;
+  background-color: purple;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* justify-items: center; */
+}
+
+
 /* The actual popup (appears on top) */
-#welcome .welcomeInformation {
-/* visibility: hidden; */
-width: 400px;
-background-color: #555;
-color: #fff;
-text-align: center;
-border-radius: 6px;
-padding: 8px 0;
-position: absolute;
-z-index: 1;
-/* bottom: 125%;
-left: 50%; */
-/* margin-left: 80px; */
+.welcomeInformation {
+  /* visibility: hidden; */
+  width: 80%;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+ .welcomeImage{
+  /* width: 100%; */
+  max-width: 800px;
+  margin: 0 auto;
+  z-index: 1;
+  height: 200px;
+  display: flex;
+  align-self: flex-start;
+  justify-content: center;
+}
+
+#welcomeExit{
+  position: absolute;
+  top: 6px;
+  right: 150px;
+  z-index: 2;
+  font-weight: bold;
 }
 
 /* Popup arrow */
