@@ -36,19 +36,24 @@
   margin-right: 10px;
 }
 
-.results__songkick .single-result {
+.results__songkick .single-result,
+.itinerary__songkick .single-result {
   grid-template-columns: 1fr 2fr 1fr;
 }
 
-.results__songkick .single-result > * {
+.results__songkick .single-result > *,
+.itinerary__songkick .single-result > * {
   grid-column: 2;
 }
 
-.results__songkick .single-result > div:first-child {
+.results__songkick .single-result > div:first-child,
+.itinerary__songkick .single-result > div:first-child {
   grid-column: 1;
   grid-row: span 3;
 }
 .results__songkick .single-result .add-button,
-.results__songkick .single-result .remove-button {
+.results__songkick .single-result .remove-button,
+.itinerary__songkick .single-result .add-button,
+.itinerary__songkick .single-result .remove-button {
   grid-column: 3;
 }
