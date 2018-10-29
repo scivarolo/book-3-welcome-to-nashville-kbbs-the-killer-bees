@@ -15,6 +15,12 @@
   font-size: 75%;
   border-radius: 10px;
 }
+.savedItinEvents .itinName {
+  color: var(--accent);
+  font-size: 24px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 
 .savedItinEvents :last-child section {
   border-bottom: none;
