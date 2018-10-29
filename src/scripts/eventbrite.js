@@ -24,8 +24,10 @@ function clearEventbriteSearch(){
 // Element Factory to create each of the HTML elements needed to display the results to the DOM
 let elementFactory = (el, content, {clazz, id}, type, link, value, target,...children)=>{
   let element = document.createElement(el);
-  if(el==="input"){
+  if(el==="input" && type === "button"){
     element.setAttribute("type", type);
+    element.value = value;
+  } else if(el === "input"){
     element.setAttribute("placeholder", value);
   } else if(el === "a"){
     element.href=link;
