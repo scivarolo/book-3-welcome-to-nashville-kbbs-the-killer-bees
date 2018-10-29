@@ -17,11 +17,17 @@ function makeWelcomePage (){
   let headerImg = imgCreationFactory("img", "img/kbbs-welcome-to-nashville-header.jpg", "Welcome to Nashville", {clazz: "welcomeImage", id: null})
 
   let exitButton = elementFactory("div", "X", {clazz: "welcomeExit", id: "welcomeExit"}, null)
-  let nameInput = elementFactory("input", null, {clazz: "welcomeInput", id: "welcomeNameInput"}, "text", null, "please enter your name", null)
-  // console.log(nameInput);
+
+  let welcomeTitle = elementFactory("p", "Start Planning Your Trip to Nashville", {clazz: "welcomePageGreeting", id: "welcomePageGreeting"}, null)
+  let contentSection = elementFactory("section", null, {clazz: "welcomeContent", id: "welcomeContent"}, null)
+  contentSection.appendChild(welcomeTitle);
+
+  let nameInput = elementFactory("input", null, {clazz: "welcomeInput", id: "welcomeNameInput"}, "text", null, "Please Enter Your Name", null)
   let nameInputButton = elementFactory("button", "Next", {clazz: "nameInputButton", id: "welcomeNameInputButton"}, null)
   let welcomeInformation = elementFactory("section", null, {clazz: "welcomeInformation", id: null}, null, null, null, null, nameInput, nameInputButton)
-  let welcomePageWrapper = elementFactory("section", null, {clazz: "welcomePageWrapper", id: "welcomePageWrapper"}, null, null, null, null, exitButton, headerImg, welcomeInformation )
+  contentSection.appendChild(welcomeInformation)
+
+  let welcomePageWrapper = elementFactory("section", null, {clazz: "welcomePageWrapper", id: "welcomePageWrapper"}, null, null, null, null, exitButton, headerImg, contentSection)
   welcomeFragment.appendChild(welcomePageWrapper);
   welcomePage.appendChild(welcomeFragment);
 }
