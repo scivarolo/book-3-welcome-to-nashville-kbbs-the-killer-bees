@@ -1,0 +1,55 @@
+#savedItineraries {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#savedItineraries .section__heading {
+  width: 100%;
+}
+
+.savedItinEvents {
+  flex-basis: 46%;
+  margin: 15px;
+  background-color: rgb(245, 245, 250);
+  padding: 10px 20px 0;
+  font-size: 75%;
+  border-radius: 10px;
+}
+.savedItinEvents .itinName {
+  color: var(--accent);
+  font-size: 24px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.savedItinEvents :last-child section {
+  border-bottom: none;
+}
+
+.savedItinEvents .single-result {
+  padding: 0 0 10px 0;
+  margin: 10px 0;
+  grid-template-columns: auto;
+  grid-column-gap: 10px;
+}
+
+.savedItinEvents .single-result a {
+  margin-top: 10px;
+}
+.savedItinEvents .single-result p + a {
+  margin-top: 0;
+}
+
+.savedItinEvents img {
+  max-width: 100px;
+}
+
+#savedItineraries .remove-button {
+  display: none;
+}
+
+#savedItineraries button,
+#savedItineraries input[type="button"] {
+  height: 25px;
+  font-size: 10px;
+}

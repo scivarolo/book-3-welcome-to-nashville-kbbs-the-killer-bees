@@ -91,8 +91,32 @@ input[type="button"]:hover  {
 }
 .footer__div {
   background: white;
-  border-top: 1px solid gray;
+  border-top: 3px solid lightgray;
   margin: auto;
   max-width: 800px;
   text-align: left;
+}
+
+/*---------- Killer BEE ----------*/
+
+.footer__div img:hover {
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake 0.5s;
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+  transform: scale(2);
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg) scale(2); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg) scale(2); }
+  20% { transform: translate(-3px, 0px) rotate(1deg) scale(2); }
+  30% { transform: translate(3px, 2px) rotate(0deg) scale(2); }
+  40% { transform: translate(1px, -1px) rotate(1deg) scale(2); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg) scale(2); }
+  60% { transform: translate(-3px, 1px) rotate(0deg) scale(2); }
+  70% { transform: translate(3px, 1px) rotate(-1deg) scale(2); }
+  80% { transform: translate(-1px, -1px) rotate(1deg) scale(2); }
+  90% { transform: translate(1px, 2px) rotate(0deg) scale(2); }
+  100% { transform: translate(1px, -2px) rotate(-1deg) scale(2); }
 }
