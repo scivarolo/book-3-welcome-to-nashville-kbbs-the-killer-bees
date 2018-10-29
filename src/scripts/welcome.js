@@ -1,5 +1,6 @@
 // Select the section in the DOM
 let welcomePage = document.getElementById("welcome")
+let nameInput = " ";
 
 function imgCreationFactory (el, source, alt, {clazz, id}){
   let element = document.createElement(el);
@@ -13,62 +14,59 @@ function imgCreationFactory (el, source, alt, {clazz, id}){
 // Create function that creates innerHTML of Welcome Screen
 let welcomeFragment = document.createDocumentFragment();
 function makeWelcomePage (){
-  // let headerImgWrapper = elementFactory("div", null, {clazz: "welcomeImageWrapper", id: null}, null);
   let headerImg = imgCreationFactory("img", "img/kbbs-welcome-to-nashville-header.jpg", "Welcome to Nashville", {clazz: "welcomeImage", id: null})
-  // console.log(headerImg)
-  // headerImgWrapper.appendChild(headerImg)
+
   let exitButton = elementFactory("div", "X", {clazz: "welcomeExit", id: "welcomeExit"}, null)
-  let nameInput = elementFactory("input", null, {clazz: "welcomeInput", id: null}, "text", null, "please enter your name", null)
+  let nameInput = elementFactory("input", null, {clazz: "welcomeInput", id: "welcomeNameInput"}, "text", null, "please enter your name", null)
   // console.log(nameInput);
-  let nameInputButton = elementFactory("button", "Next", {clazz: "nameInputButton", id: null}, null)
+  let nameInputButton = elementFactory("button", "Next", {clazz: "nameInputButton", id: "welcomeNameInputButton"}, null)
   let welcomeInformation = elementFactory("section", null, {clazz: "welcomeInformation", id: null}, null, null, null, null, nameInput, nameInputButton)
-  let welcomePageWrapper = elementFactory("section", null, {clazz: "welcomePageWrapper", id: "welcomePageWrapper"}, null, null, null, null, headerImg, exitButton, welcomeInformation )
-  // welcomeFragment.appendChild(headerImg);
-  // welcomeFragment.appendChild(exitButton);
-  // welcomeFragment.appendChild(welcomeInformation);
+  let welcomePageWrapper = elementFactory("section", null, {clazz: "welcomePageWrapper", id: "welcomePageWrapper"}, null, null, null, null, exitButton, headerImg, welcomeInformation )
   welcomeFragment.appendChild(welcomePageWrapper);
   welcomePage.appendChild(welcomeFragment);
 }
-makeWelcomePage();
 
-// I need to add an event listener that when some section of the page loads, it calls this function to create my popup.
+// Event Listener, calls makeWelcomePage function to create the welcome page upon content loading.
 
-// Create event listener that loads welcome page upon page load
-// function popup(mylink, windowname) {
-//   if (! window.focus)return true;
-//   var href;
-//   if (typeof(mylink) == 'string')
-//   href=mylink;
-//   else href=mylink.href;
-//   window.open(href, windowname, 'width=400,height=200,scrollbars=yes');
-//   return false; }
+if (document.readyState === "loading"){
+  document.addEventListener("DOMContentLoaded", ()=>{
+    makeWelcomePage();
+    exitButtonEvent();
+    captureNameInput();
+    nameInput = document.getElementById("welcomeNameInput");
+    clearWelcomeInput();
+  })
+}
 
-// onClick = myFunction
+function clearWelcomeInput(){
+  nameInput.addEventListener("click", ()=>{
+    nameInput.placeholder = " ";
+  })
+}
 
-// function showWelcome (){
-//   welcomePage.classList.toggle("show")
-// }
+function exitButtonEvent(){
+  let exitButton = document.getElementById("welcomeExit")
+  exitButton.addEventListener("click", ()=>{
+    welcomePage.style.display = "none"
+  })
+}
 
-let body = document.querySelector("body");
-console.log(body)
+// Create event listener on button click that captures the input and passes it into a variable
 
-body.addEventListener("onLoad", ()=>{
-  console.log("the event listener has been added")
-  welcomePage.classList.toggle("show")
-})
-// function myFunction(){
-//   var popup = get element by id("myPopup")
-//   popup.classList.toggle("show")
-// }
-// Event Listener for exit button
+function captureNameInput(){
+  let nameInputButton = document.getElementById("welcomeNameInputButton");
+  let itineraryName = " "
 
-let exitButton = document.getElementById("welcomeExit")
-exitButton.addEventListener("click", ()=>{
-  // console.log("the button was clicked")
-  // welcomePage.classList.toggle("show");
-  welcomePage.style.visibility = "hidden"
-})
-
-// Create event listner on button click that captures the input and passes it into a variable
+  nameInputButton.addEventListener("click", ()=>{
+    // console.log("the name input button was clicked")
+    if (nameInput.value === ""){
+      alert("Please enter your name")
+    } else{
+      itineraryName = nameInput.value;
+      // console.log(itineraryName);
+      welcomePage.style.display = "none";
+    }
+  })
+}
 
 // Capture input and pass to JSON and other portions of page

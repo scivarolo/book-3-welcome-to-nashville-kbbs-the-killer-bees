@@ -25,8 +25,8 @@ function clearEventbriteSearch(){
 let elementFactory = (el, content, {clazz, id}, type, link, value, target,...children)=>{
   let element = document.createElement(el);
   if(el==="input"){
-    element.setAttribute("type", type)
-    element.value = value;
+    element.setAttribute("type", type);
+    element.setAttribute("placeholder", value);
   } else if(el === "a"){
     element.href=link;
     element.setAttribute("target", target)

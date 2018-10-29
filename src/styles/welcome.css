@@ -26,7 +26,12 @@
 
 /* Popup container */
 #welcome {
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
   /* display: block; */
   cursor: pointer;
   /* width: 80%; */
@@ -37,9 +42,12 @@
   width: 80%;
   height: 600px;
   margin: auto;
+  vertical-align: center;
   background-color: purple;
   display: flex;
+  /* align-self: flex-end; */
   align-items: center;
+  /* align-content: flex-end; */
   justify-content: center;
   /* justify-items: center; */
 }
@@ -62,7 +70,7 @@
  .welcomeImage{
   /* width: 100%; */
   max-width: 800px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   z-index: 1;
   height: 200px;
   display: flex;
@@ -71,7 +79,10 @@
 }
 
 #welcomeExit{
-  position: absolute;
+  /* position: absolute; */
+  display: flex;
+  justify-content: flex-end;
+  align-content: flex-start;
   top: 6px;
   right: 150px;
   z-index: 2;
