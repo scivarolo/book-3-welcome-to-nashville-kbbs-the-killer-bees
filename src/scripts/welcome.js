@@ -5,7 +5,6 @@ let welcomePage = document.getElementById("welcome");
 let welcomeFragment = document.createDocumentFragment();
 function makeWelcomePage (){
   let nameInput = elementFactory("input", null, {clazz: "welcomeInput", id: null}, "text", null, "please enter your name", null);
-  console.log(nameInput);
   let nameInputButton = elementFactory("button", "Next", {clazz: "nameInputButton", id: null}, null);
   let welcomeInformation = elementFactory("section", null, {clazz: "welcomeInformation", id: null}, null, null, null, null, nameInput, nameInputButton);
   welcomeFragment.appendChild(welcomeInformation);

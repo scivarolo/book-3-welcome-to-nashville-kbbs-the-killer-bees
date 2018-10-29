@@ -2,7 +2,6 @@ const searchNav = document.querySelectorAll(".search-tab");
 const searchSections = document.querySelectorAll("[class^='search__']");
 const searchHeading = document.querySelector(".search-heading");
 const welcomeHeader = document.querySelector(".header__div img");
-console.log(searchSections);
 searchNav.forEach(tab => {
   tab.addEventListener("click", (event) => {
     switchSearchTabs(event);

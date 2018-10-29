@@ -28,60 +28,6 @@
   margin: 0px;
   line-height: .9;
 }
-/* .parkInput {
-  border: none;
-  padding: 0px;
-  margin: 0px;
-}
-.parkBlock {
-  margin: 30px;
-  background-color: white;
-  text-align: center;
-  border: 4px solid;
-  border-radius: 15px;
-  font-weight: bold;
-  padding: 0px;
-}
-.parkBlock > h1 {
-  font-size: 40px;
-  margin: 0px;
-}
-.parkBlock > p {
-  font-size: 30px;
-  margin: 0px;
-  line-height: 28px;
-}
-.listItem {
-  font-size: 20px;
-  line-height: 0px;
-  display: inline-flex;
-  padding: 13px;
-}
-.featuresName {
-  border-top: 2px solid black;
-  font-size: 30px;
-  margin-top: 5px;
-}
-.featureItem {
-  font-size: 19px;
-  display: inline-flex;
-  padding: 10px;
-  line-height: 0px;
-}
-#parkRadioContainer {
-  text-align: center;
-}
-.indivBox {
-  width: 77px;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding-bottom: 7px;
-} */
-/* #savedItineraries {
-  text-align: center;
-} */
 #savedItineraries button {
   display: none;
 }
