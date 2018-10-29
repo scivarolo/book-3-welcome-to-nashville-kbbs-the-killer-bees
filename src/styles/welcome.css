@@ -59,3 +59,48 @@
   right: 18px;
   font-weight: bold;
 }
+
+#forecast {
+  background-color: #3cc;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 0px;
+  background-position-x: right;
+  display: flex;
+  flex-direction: row;
+  border-radius: 0 0 15px 15px;
+}
+
+#statementAndCity{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  margin-left: 23px;
+}
+
+#displayAndCondition{
+  display: flex;
+  flex-direction: row;
+  margin-left: 16%;
+  align-items: center;
+  font-weight: bold;
+}
+#weatherIcon {
+  width: 100%;
+}
+#weatherTag {
+  color: white;
+  font-size: 17px;
+  margin: 0px;
+}
+#cityName {
+  font-size: 23px;
+  margin:0px
+}
+#currentCondition {
+  color: white;
+  font-size: 35px;
+  margin: 0px;
+  line-height: .9;
+}

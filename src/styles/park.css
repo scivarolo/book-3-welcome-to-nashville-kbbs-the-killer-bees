@@ -1,33 +1,4 @@
-#forecast {
-  background-color: #2e8dad;
-  position: fixed;
-  text-align: center;
-  border: 2px solid gray;
-  top: 0px;
-  right: 0px;
-  font-weight: bold;
-  width: 125px;
-  padding: 0px;
-  margin: 0px;
-}
-#weatherIcon {
-  width: 100%;
-}
-#weatherTag {
-  color: white;
-  font-size: 17px;
-  margin: 0px;
-}
-#cityName {
-  font-size: 23px;
-  margin:0px
-}
-#currentCondition {
-  color: white;
-  font-size: 35px;
-  margin: 0px;
-  line-height: .9;
-}
+
 /* .parkInput {
   border: none;
   padding: 0px;
