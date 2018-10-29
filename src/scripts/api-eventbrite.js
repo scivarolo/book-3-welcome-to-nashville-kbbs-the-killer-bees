@@ -8,7 +8,7 @@ let eventbriteCategoryMatch = (input) => {
   .then((categories)=> categories.json())
   .then((categories) => {
     for( let i = 0; i <categories.length; i++ ){
-      let categoryString = categories[i].name.toLowerCase().toString()
+      let categoryString = categories[i].name.toLowerCase().toString();
       if(categoryString.match(eventbriteInput.toLowerCase())){
         eventbriteQuery(categories[i].id);
       };
@@ -26,7 +26,7 @@ let eventbriteQuery = (categoryId)=> {
   .then((eventdata) => eventdata.events)
   .then((events)=> {
     eventbriteAllEvents.push(events);
-    console.log(eventbriteAllEvents)
+    console.log(eventbriteAllEvents);
     eventbriteAllEvents.forEach(event=> eventbriteQueryResults(event));
   });
 };
