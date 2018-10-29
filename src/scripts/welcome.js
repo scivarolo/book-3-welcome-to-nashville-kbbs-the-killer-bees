@@ -22,7 +22,7 @@ function makeWelcomePage (){
   let contentSection = elementFactory("section", null, {clazz: "welcomeContent", id: "welcomeContent"}, null)
   contentSection.appendChild(welcomeTitle);
 
-  let nameInput = elementFactory("input", null, {clazz: "welcomeInput", id: "welcomeNameInput"}, "text", null, "Please Enter Your Name", null)
+  let nameInput = elementFactory("input", null, {clazz: "welcomeInput", id: "welcomeNameInput"}, "text", null, "Name Your Itinerary", null)
   let nameInputButton = elementFactory("button", "Next", {clazz: "nameInputButton", id: "welcomeNameInputButton"}, null)
   let welcomeInformation = elementFactory("section", null, {clazz: "welcomeInformation", id: null}, null, null, null, null, nameInput, nameInputButton)
   contentSection.appendChild(welcomeInformation)
