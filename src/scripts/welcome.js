@@ -57,19 +57,17 @@ function exitButtonEvent(){
   })
 }
 
-// Create event listener on button click that captures the input and passes it into a variable
+// Event listener on button click that captures the input and passes it into a variable
 
 function captureNameInput(){
   let nameInputButton = document.getElementById("welcomeNameInputButton");
   let itineraryName = " "
 
   nameInputButton.addEventListener("click", ()=>{
-    // console.log("the name input button was clicked")
     if (nameInput.value === ""){
       alert("Please enter your name")
     } else{
       itineraryName = nameInput.value;
-      // console.log(itineraryName);
       welcomePage.style.display = "none";
     }
   })
