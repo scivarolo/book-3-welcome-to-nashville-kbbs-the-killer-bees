@@ -23,7 +23,7 @@ function getZomatoTrending() {
 
 // Element Factory for Zomato Results
 
-function zElFactory(el, attributesObj, content,...children) {
+function zElFactory(el, attributesObj, content, ...children) {
   let element = document.createElement(el);
   //Set Attributes
   for (let attr in attributesObj) {
