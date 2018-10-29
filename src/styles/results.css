@@ -1,12 +1,15 @@
 .single-result {
   border-bottom: 1px solid lightgray;
   padding-bottom: 15px;
+  padding-top: 20px;
   display: grid;
   grid-template-columns: 3.5fr 1fr;
+  grid-column-gap: 20px;
 }
 
 .single-result h3 {
   margin-bottom: 0;
+  margin-top: 0;
   font-size: 125%;
 }
 
@@ -20,13 +23,10 @@
 .add-button,
 .remove-button {
   grid-column: 2;
-  grid-row: 1 / 10;
+  grid-row: 1 / span 4;
   margin: auto;
 }
 
-.featuresName {
-
-}
 .featureItem {
   list-style: none;
   margin: 0;
@@ -34,4 +34,21 @@
   display: inline;
   font-size: 14px;
   margin-right: 10px;
+}
+
+.results__songkick .single-result {
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
+.results__songkick .single-result > * {
+  grid-column: 2;
+}
+
+.results__songkick .single-result > div:first-child {
+  grid-column: 1;
+  grid-row: span 3;
+}
+.results__songkick .single-result .add-button,
+.results__songkick .single-result .remove-button {
+  grid-column: 3;
 }
