@@ -163,13 +163,14 @@ const HANDLEEVENT = {
       newEvent.parks = stringItinerary;
       stringItinerary = document.querySelector(".itinerary__eventbrite").innerHTML;
       newEvent.eventbrite = stringItinerary;
+      window.scrollTo(0, 0);
       API.saveItinerary(newEvent).then(itins => {
         zomatoItinPlaceholder.innerHTML = null;
         songkickItinPlaceholder.innerHTML = null;
         parkItinPlaceholder.innerHTML = null;
         eventbriteItinPlaceholder.innerHTML = null;
         savedItin.innerHTML = null;
-        itins.forEach(itin => HTMLPRINT.printSaved(itin))
+        itins.forEach(itin => HTMLPRINT.printSaved(itin));
       });
     }
   },
