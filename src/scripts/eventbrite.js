@@ -25,11 +25,11 @@ function clearEventbriteSearch(){
 let elementFactory = (el, content, {clazz, id}, type, link, value, target,...children)=>{
   let element = document.createElement(el);
   if(el==="input"){
-    element.setAttribute("type", type)
+    element.setAttribute("type", type);
     element.value = value;
   } else if(el === "a"){
     element.href=link;
-    element.setAttribute("target", target)
+    element.setAttribute("target", target);
   } else{
     element.innerHTML = content || null;
     children.forEach(child => {
@@ -54,7 +54,7 @@ function getCorrectDate (eventDate){
 function passEventStart(){
   eventStart.forEach((event)=>{
     getCorrectTime(event);
-  })
+  });
   startTimeFormatted = timeFormatted;
   return startTimeFormatted;
 }
@@ -63,36 +63,36 @@ function passEventStart(){
 function passEventEnd(){
   eventEnd.forEach((event)=>{
     getCorrectTime(event);
-  })
+  });
   endTimeFormatted = timeFormatted;
-  return endTimeFormatted
+  return endTimeFormatted;
 }
 
 // Used to reformat time provided via query to readable time
 function getCorrectTime(eventTime){
-  let timeArr = `${eventTime}`.substring(11,16).split(":")
+  let timeArr = `${eventTime}`.substring(11,16).split(":");
   let morningEvening= "am";
   if(timeArr[0] > 12){
     timeArr[0] = (timeArr[0]-12);
-    morningEvening = "pm"
+    morningEvening = "pm";
   } else if(timeArr[0] === 0){
     timeArr[0] = 12;
   }else{
-    timeArr[0] = timeArr[0].substring(1)
+    timeArr[0] = timeArr[0].substring(1);
   }
   updatedTime = timeArr.join(":");
   timeArr = [];
-  timeArr.unshift(updatedTime, morningEvening)
+  timeArr.unshift(updatedTime, morningEvening);
   timeFormatted = timeArr.join(" ");
-  return timeFormatted
+  return timeFormatted;
 }
 
 // Used to filter through venue information and prevent any null responses from displaying in the DOM
 function vettingVenue(eventVenue, eventAddressArr){
   if(eventVenue === " " || eventVenue === null){
-    eventAddressAndVenue = elementFactory("p", eventAddressArr, {clazz: null, id: null}, null, null, null, null)
+    eventAddressAndVenue = elementFactory("p", eventAddressArr, {clazz: null, id: null}, null, null, null, null);
   } else{
-    eventAddressAndVenue = elementFactory("p", `${eventVenue} | ${eventAddressArr}`, {clazz: null, id: null}, null, null, null, null)
+    eventAddressAndVenue = elementFactory("p", `${eventVenue} | ${eventAddressArr}`, {clazz: null, id: null}, null, null, null, null);
   }
   return eventAddressAndVenue;
 }
@@ -109,19 +109,18 @@ function eventbriteQueryResults (eventsar){
     eventEnd.push(events.end.local);
     passEventStart();
     passEventEnd();
-    let dateAndTime = elementFactory("h4", `${dateFormatted} | ${startTimeFormatted}-${endTimeFormatted}`, {clazz: null, id: `search-result-date-${events.id}`}, null)
+    let dateAndTime = elementFactory("h4", `${dateFormatted} | ${startTimeFormatted}-${endTimeFormatted}`, {clazz: null, id: `search-result-date-${events.id}`}, null);
 
     // Event Venue and Address
     let eventAddressArr = events.venue.address.localized_multi_line_address_display.join(" ");
-    console.log(eventAddressArr)
     let eventVenue = events.venue.name;
     vettingVenue(eventVenue, eventAddressArr);
     let eventAddress = eventAddressAndVenue;
 
     // Get tickets link and button
-    let ticketLink = elementFactory("a", null, {clazz: null, id: null}, null, `${events.url}`, null, "_blank")
-    let ticketButton = elementFactory("input", null, {clazz: "ticket-button", id: `button-tickets-${events.id}`}, "button", null, "Get Tickets")
-    ticketLink.appendChild(ticketButton)
+    let ticketLink = elementFactory("a", null, {clazz: null, id: null}, null, `${events.url}`, null, "_blank");
+    let ticketButton = elementFactory("input", null, {clazz: "ticket-button", id: `button-tickets-${events.id}`}, "button", null, "Get Tickets");
+    ticketLink.appendChild(ticketButton);
 
     // Event Name
     let eventName = elementFactory("h3", events.name.text, {clazz: null, id: `search-result-name-${events.id}`}, null);
