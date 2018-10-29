@@ -120,6 +120,8 @@ const songkickItinPlaceholder = document.querySelector(".itinerary__songkick");
 const eventbriteItinPlaceholder = document.querySelector(".itinerary__eventbrite");
 const parkSearchPlaceholder = document.querySelector(".search__parks");
 const savedItin = document.querySelector("#savedItineraries");
+const itinName = document.querySelector(".wrapper--itinerary h2");
+console.log(itinName);
 let featureString = "";
 let searchResults = [];
 let addedItem = {};
@@ -152,6 +154,7 @@ const HANDLEEVENT = {
     } else {
       let newEvent = {};
       let stringItinerary = "";
+      newEvent.name = itineraryName;
       stringItinerary = document.querySelector(".itinerary__zomato").innerHTML;
       newEvent.zomato = stringItinerary;
       stringItinerary = document.querySelector(".itinerary__songkick").innerHTML;
@@ -205,6 +208,10 @@ const HTMLPRINT = {
     if (itin !== undefined) {
       let eachItin = document.createElement("article");
       eachItin.setAttribute("class", "savedItinEvents");
+      let name = document.createElement("h1");
+      name.setAttribute("class", "itinName");
+      name.innerHTML = itin.name;
+      eachItin.appendChild(name);
       let food = document.createElement("div");
       food.setAttribute("class", "itinerary__zomato");
       food.innerHTML = itin.zomato;
@@ -345,25 +352,31 @@ const HTMLPRINT = {
   weatherPrint(weather) {
     let currentWeather = document.createElement("div");
     currentWeather.setAttribute("id", "forecast");
-    currentWeather.setAttribute("style", `background-image: url("http://openweathermap.org/img/w/${weather.weather[0].icon}.png"); background-size: contain; background-repeat: none`);
+    currentWeather.setAttribute("style", `background-image: url("http://openweathermap.org/img/w/${weather.weather[0].icon}.png"); background-size: contain; background-repeat: no-repeat`);
+    let statementAndCity = document.createElement("div")
+    statementAndCity.setAttribute("id", "statementAndCity")
     let weatherStatement = document.createElement("p");
     weatherStatement.setAttribute("id", "weatherTag");
     weatherStatement.innerHTML = "Current Conditions For";
-    currentWeather.appendChild(weatherStatement);
+    statementAndCity.appendChild(weatherStatement);
     let cityName = document.createElement("p");
     cityName.setAttribute("id", "cityName");
     cityName.innerHTML = weather.name;
-    currentWeather.appendChild(cityName);
+    statementAndCity.appendChild(cityName);
     let currentTemp = (weather.main.temp - 273.15) * 9 / 5 + 32;
+    let tempDisplayAndCondition = document.createElement("div");
+    tempDisplayAndCondition.setAttribute("id", "displayAndCondition")
     let tempDisplay = document.createElement("p");
     tempDisplay.setAttribute("id", "currentCondition");
     tempDisplay.innerHTML = Math.ceil(currentTemp) + "&deg;";
-    currentWeather.appendChild(tempDisplay);
+    tempDisplayAndCondition.appendChild(tempDisplay);
     let tempCondition = document.createElement("p");
     tempCondition.setAttribute("id", "currentCondition");
     tempCondition.innerHTML = weather.weather[0].main;
-    currentWeather.appendChild(tempCondition);
-    document.body.appendChild(currentWeather);
+    tempDisplayAndCondition.appendChild(tempCondition);
+    currentWeather.appendChild(statementAndCity);
+    currentWeather.appendChild(tempDisplayAndCondition);
+    document.querySelector("#welcomePageWrapper").appendChild(currentWeather);
   }
 };
 
