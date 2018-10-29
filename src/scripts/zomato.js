@@ -36,7 +36,7 @@ function outputZomatoResults(results) {
         <h3>${result.restaurant.name}</h3>
         <h4>${result.restaurant.location.address}</h4>
         <section class="additional-data">
-          <p class="restaurant-raiting">Rating: ${result.restaurant.user_rating.aggregate_rating} based on ${result.restaurant.user_rating.votes} reviews</p>
+          <p class="restaurant-rating">Rating: ${result.restaurant.user_rating.aggregate_rating} based on ${result.restaurant.user_rating.votes} reviews</p>
           <p class="average-price">Average Price for Two: $${result.restaurant.average_cost_for_two}</p>
           ${reservations}
         </section>

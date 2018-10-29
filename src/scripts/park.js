@@ -94,7 +94,7 @@ const features = [
     text: "Skate Park"
   },
   {
-    id: "swimming_pook",
+    id: "swimming_pool",
     text: "Swimming Pool"
   },
   {

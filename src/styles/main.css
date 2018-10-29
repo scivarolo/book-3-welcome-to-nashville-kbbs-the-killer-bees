@@ -1,3 +1,7 @@
+:root {
+  --accent: #3cc;
+  --accent-light: rgb(56, 224, 224);
+}
 html {
     box-sizing: border-box;
   }
@@ -8,12 +12,7 @@ html {
 
 body {
   margin: 0;
-  background-color: lightcyan;
-  font-family: "Nunito", sans-serif;
-}
-
-body {
-  background-color: lightcyan;
+  background-color: rgb(245, 245, 250);
   font-family: "Nunito", sans-serif;
 }
 
@@ -22,7 +21,7 @@ body {
   margin: 0 auto 20px;
   max-width: 800px;
   background-color: white;
-  border-radius: 3px;
+  border-bottom: 3px solid var(--accent);
 }
 
 .page-title {
@@ -33,56 +32,13 @@ body {
   margin-top: 0;
 }
 
-/*---------- Search Area ----------*/
-
-div[class^="search__"] {
-  margin-bottom: 20px;
-  display: none;
-}
-
-div[class^="search__"].show {
-  display: block;
-}
-
-div[class^="search__"] label {
-  display: block;
-}
-
-fieldset {
-  border: none;
-}
-
-/*---------- Search Area Nav ----------*/
-
-.search-nav ul {
-  display: flex;
-  list-style: none;
-  margin: -20px -20px 20px -20px;
-  padding: 0;
-}
-.search-tab {
-  flex: 1;
-  text-align: center;
-  background-color: lightgray;
-  padding: 20px;
-  transition: .25s ease-in-out background-color;
-}
-
-.search-tab.active {
-  background-color: white;
-}
-
-.search-tab:not(.active):hover {
-  background-color: lightseagreen;
-}
-
 /*---------- Inputs and Buttons ----------*/
 
 input[type="text"] {
   font-size: 16px;
   border-radius: 15px;
   border: none;
-  background-color: rgb(248, 248, 248);
+  background-color: rgb(240, 240, 240);
   height: 30px;
   outline: none;
   padding: 0 15px;
@@ -94,17 +50,33 @@ input[type="button"] {
   outline: none;
   height: 30px;
   border-radius: 15px;
-  background-color: lightseagreen;
+  background-color: var(--accent);
   padding: 0 15px;
   color: white;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
+  transition: .125s ease-in-out all;
 }
 
 button:active,
-input[type="button"]:active {
-  background-color: teal;
+input[type="button"]:active,
+button:hover,
+input[type="button"]:hover  {
+  background-color: var(--accent-light);
+}
+
+.add-button {
+  background-color: orange;
+}
+
+.remove-button {
+  background-color: rgb(240, 240, 240);
+  color: rgb(100,100,100);
+}
+
+.wrapper--itinerary > button {
+  margin-top: 20px;
 }
 
 .hide {
