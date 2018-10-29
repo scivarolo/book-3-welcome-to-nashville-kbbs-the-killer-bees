@@ -1,25 +1,106 @@
-#welcome{
-  width: 400px;
-  height: 600px;
-  position: relative;
-  background-color: purple;
+/* Popup container */
+#welcome {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: flex;
-  flex-direction: column;
-  visibility: hidden;
+  cursor: pointer;
+  z-index: 1;
+  background-color: rgb(245, 245, 250);
 }
 
-/* .welcomeInformation{
-  text-align: center;
-  /* vertical-align: middle; */
-  /* position: absolute;
-  margin: 0 auto;
-  top: 50%; */
-/* } */
-
-.welcomeInformation{
-  visibility: hidden;
+#welcomePageWrapper{
+  width: 80%;
+  height: 70%;
+  margin: auto;
+  background-color: white;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0 30px rgba(0,0,0,.25);
+  border-radius: 15px;
+  position: relative;
+}
+
+#welcomeContent{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#welcomeNameInput{
+  text-align: center;
+}
+
+#welcomePageGreeting{
+  display: flex;
+  justify-content: center;
+  color: #3cc;
+  font-size: 32px;
+}
+
+.welcomeImage{
+  width: 80%;
+  max-width: 800px;
+  margin-top: 20px;
+  z-index: 1;
+  display: flex;
+}
+
+#welcomeExit{
+  position: absolute;
+  top: 13px;
+  right: 18px;
+  font-weight: bold;
+}
+
+#forecast {
+  background-color: #3cc;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 0px;
+  background-position-x: right;
+  display: flex;
   flex-direction: row;
+  border-radius: 0 0 15px 15px;
+}
+
+#statementAndCity{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  margin-left: 23px;
+}
+
+#displayAndCondition{
+  display: flex;
+  flex-direction: row;
+  margin-left: 16%;
+  align-items: center;
+  font-weight: bold;
+}
+#weatherIcon {
+  width: 100%;
+}
+#weatherTag {
+  color: white;
+  font-size: 17px;
+  margin: 0px;
+}
+#cityName {
+  font-size: 23px;
+  margin:0px
+}
+#currentCondition {
+  color: white;
+  font-size: 35px;
+  margin: 0px;
+  line-height: .9;
 }

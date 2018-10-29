@@ -43,6 +43,7 @@ div[class^="search__"] > div {
   text-align: center;
 }
 
+#welcomeNameInput,
 .wrapper--search input[type="text"] {
   height: 45px;
   border-radius: 22.5px;
@@ -51,6 +52,7 @@ div[class^="search__"] > div {
   width: 300px;
 }
 .wrapper--search button,
+#welcomeNameInputButton,
 .wrapper--search input[type="button"] {
   height: 45px;
   border-radius: 22.5px;
