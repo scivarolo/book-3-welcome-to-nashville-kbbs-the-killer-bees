@@ -120,6 +120,8 @@ const songkickItinPlaceholder = document.querySelector(".itinerary__songkick");
 const eventbriteItinPlaceholder = document.querySelector(".itinerary__eventbrite");
 const parkSearchPlaceholder = document.querySelector(".search__parks");
 const savedItin = document.querySelector("#savedItineraries");
+const itinName = document.querySelector(".wrapper--itinerary h2");
+console.log(itinName);
 let featureString = "";
 let searchResults = [];
 let addedItem = {};
@@ -152,6 +154,7 @@ const HANDLEEVENT = {
     } else {
       let newEvent = {};
       let stringItinerary = "";
+      newEvent.name = itineraryName;
       stringItinerary = document.querySelector(".itinerary__zomato").innerHTML;
       newEvent.zomato = stringItinerary;
       stringItinerary = document.querySelector(".itinerary__songkick").innerHTML;
@@ -204,6 +207,10 @@ const HTMLPRINT = {
     if (itin !== undefined) {
       let eachItin = document.createElement("article");
       eachItin.setAttribute("class", "savedItinEvents");
+      let name = document.createElement("h1");
+      name.setAttribute("class", "itinName");
+      name.innerHTML = itin.name;
+      eachItin.appendChild(name);
       let food = document.createElement("div");
       food.setAttribute("class", "itinerary__zomato");
       food.innerHTML = itin.zomato;
