@@ -113,7 +113,6 @@ function eventbriteQueryResults (eventsar){
 
     // Event Venue and Address
     let eventAddressArr = events.venue.address.localized_multi_line_address_display.join(" ");
-    console.log(eventAddressArr);
     let eventVenue = events.venue.name;
     vettingVenue(eventVenue, eventAddressArr);
     let eventAddress = eventAddressAndVenue;
