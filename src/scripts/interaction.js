@@ -31,12 +31,10 @@ function switchSearchTabs(clickEvent) {
     searchSections[2].classList.add("show");
     document.querySelector(".results__parks").classList.add("show");
     welcomeHeader.setAttribute("src", "img/kbbs-parks-header.jpg");
-    // searchHeading.textContent = "Find a Park";
   }
   if (clickedTab.textContent === "Events") {
     searchSections[3].classList.add("show");
     document.querySelector(".results__eventbrite").classList.add("show");
     welcomeHeader.setAttribute("src", "img/kbbs-events-header.jpg");
-    // searchHeading.textContent = "Find an Event";
   }
 }
