@@ -1,7 +1,6 @@
 // This is where the text for park features is stored.
 // The api has the id as the property name and has a value of Yes or No
-const features = [
-  {
+const features = [{
     id: "ada_accessible",
     text: "ADA Accessible"
   },
@@ -205,6 +204,7 @@ const HANDLEEVENT = {
 // This section handles the creation of html elements and posts to html page.
 const HTMLPRINT = {
   printSaved(itin) {
+    // Saved Itinery Events Output
     let eachItin = document.createElement("article");
     eachItin.setAttribute("class", "savedItinEvents");
     if (itin.name !== undefined) {

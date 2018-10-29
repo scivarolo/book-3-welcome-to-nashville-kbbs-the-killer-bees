@@ -14,20 +14,22 @@ function imgCreationFactory (el, source, alt, {clazz, id}){
 // Create function that creates innerHTML of Welcome Screen
 let welcomeFragment = document.createDocumentFragment();
 function makeWelcomePage (){
-  let headerImg = imgCreationFactory("img", "img/kbbs-welcome-to-nashville-header.jpg", "Welcome to Nashville", {clazz: "welcomeImage", id: null});
-
-  let exitButton = elementFactory("div", "X", {clazz: "welcomeExit", id: "welcomeExit"}, null);
-
-  let welcomeTitle = elementFactory("p", "Start Planning Your Trip to Nashville", {clazz: "welcomePageGreeting", id: "welcomePageGreeting"}, null);
-  let contentSection = elementFactory("section", null, {clazz: "welcomeContent", id: "welcomeContent"}, null);
+  let headerImg = buildEl("img", {
+    src: "img/kbbs-welcome-to-nashville-header.jpg",
+    alt: "Welcome to Nashville",
+    class: "welcomeImage"
+  });
+  let exitButton = buildEl("div", {class: "welcomeExit", id: "welcomeExit"}, "x");
+  let welcomeTitle = buildEl("p", {class: "welcomePageGreeting", id: "welcomePageGreeting"}, "Start Planning Your Trip to Nashville");
+  let contentSection = buildEl("section", {class: "welcomeContent", id: "welcomeContent"});
   contentSection.appendChild(welcomeTitle);
 
-  let nameInput = elementFactory("input", null, {clazz: "welcomeInput", id: "welcomeNameInput"}, "text", null, "Name Your Itinerary", null);
-  let nameInputButton = elementFactory("button", "Next", {clazz: "nameInputButton", id: "welcomeNameInputButton"}, null);
-  let welcomeInformation = elementFactory("section", null, {clazz: "welcomeInformation", id: null}, null, null, null, null, nameInput, nameInputButton);
+  let nameInput = buildEl("input", {class: "welcomeInput", id: "welcomeNameInput", type: "text", placeholder: "Name Your Itinerary" });
+  let nameInputButton = buildEl("button", {class: "nameInputButton", id: "welcomeNameInputButton"}, "Next");
+  let welcomeInformation = buildEl("section", {class: "welcomeInformation"}, null, nameInput, nameInputButton);
   contentSection.appendChild(welcomeInformation);
 
-  let welcomePageWrapper = elementFactory("section", null, {clazz: "welcomePageWrapper", id: "welcomePageWrapper"}, null, null, null, null, exitButton, headerImg, contentSection);
+  let welcomePageWrapper = buildEl("section", {class: "welcomePageWrapper", id: "welcomePageWrapper"}, null, exitButton, headerImg, contentSection);
   welcomeFragment.appendChild(welcomePageWrapper);
   welcomePage.appendChild(welcomeFragment);
 }

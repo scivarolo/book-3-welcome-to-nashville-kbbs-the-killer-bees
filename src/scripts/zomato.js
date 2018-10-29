@@ -21,51 +21,55 @@ function getZomatoTrending() {
 }
 
 
-// Element Factory for Zomato Results
-
-function zElFactory(el, attributesObj, content, ...children) {
-  let element = document.createElement(el);
-  //Set Attributes
-  for (let attr in attributesObj) {
-    element.setAttribute(attr, attributesObj[attr]);
-  }
-  element.textContent = content || null;
-  children.forEach(child => {
-    element.appendChild(child);
-  });
-  return element;
-}
 
 // This function outputs the results from Zomato into a list on the DOM
 // Then adds Event Listeners to the Add buttons.
 function outputZomatoResults(results) {
-  let zFrag = document.createDocumentFragment();
+  let fragment = document.createDocumentFragment();
 
   restaurants = results.restaurants;
   zomatoInput.value = null;
   restaurants.forEach((result) => {
+    let thisRes = result.restaurant;
+    let h3 = buildEl("h3", {}, thisRes.name);
+    let h4 = buildEl("h4", {}, thisRes.location.address);
 
-    let h3 = zElFactory("h3", {}, result.restaurant.name);
-    let h4 = zElFactory("h4", {}, result.restaurant.location.address);
-
-    let rating = zElFactory("p", {class: "restaurant-rating"}, `Rating: ${result.restaurant.user_rating.aggregate_rating} based on ${result.restaurant.user_rating.votes} reviews`);
-    let price = zElFactory("p", {class: "average-price"}, `Average Price for Two: $${result.restaurant.average_cost_for_two}`);
-    let button = zElFactory("button", {class: "add-button results__zomato__add"}, "Add to Itinerary");
+    let rating = buildEl("p", {
+      class: "restaurant-rating"
+    }, `Rating: ${thisRes.user_rating.aggregate_rating} based on ${thisRes.user_rating.votes} reviews`);
+    let price = buildEl("p", {
+      class: "average-price"
+    }, `Average Price for Two: $${thisRes.average_cost_for_two}`);
+    let button = buildEl("button", {
+      class: "add-button results__zomato__add"
+    }, "Add to Itinerary");
 
     let additional;
-    if (result.restaurant.has_table_booking === 1) {
-      let resBtn = zElFactory("button", {class: "reservation-button"}, "Book a Table");
-      let reservationEl = zElFactory("a", {href: result.restaurant.book_url, target:"_blank"}, null, resBtn);
-      additional = zElFactory("section", {class: "additional-data"}, null, rating, price, reservationEl);
+    if (thisRes.has_table_booking === 1) {
+      let resBtn = buildEl("button", {
+        class: "reservation-button"
+      }, "Book a Table");
+      let resAttrs = {
+        href: thisRes.book_url,
+        target: "_blank"
+      };
+      let reservationEl = buildEl("a", resAttrs, null, resBtn);
+      additional = buildEl("section", {
+        class: "additional-data"
+      }, null, rating, price, reservationEl);
     } else {
-      additional = zElFactory("section", {class: "additional-data"}, null, rating, price);
+      additional = buildEl("section", {
+        class: "additional-data"
+      }, null, rating, price);
     }
 
-    let section = zElFactory("section", {class: "single-result"}, null, h3, h4, additional, button);
-    zFrag.appendChild(section);
+    let section = buildEl("section", {
+      class: "single-result"
+    }, null, h3, h4, additional, button);
+    fragment.appendChild(section);
   });
 
-  zomatoResultsSection.appendChild(zFrag);
+  zomatoResultsSection.appendChild(fragment);
   addToItinEventListeners();
 }
 
