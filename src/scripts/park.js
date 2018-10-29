@@ -353,8 +353,8 @@ const HTMLPRINT = {
     let currentWeather = document.createElement("div");
     currentWeather.setAttribute("id", "forecast");
     currentWeather.setAttribute("style", `background-image: url("http://openweathermap.org/img/w/${weather.weather[0].icon}.png"); background-size: contain; background-repeat: no-repeat`);
-    let statementAndCity = document.createElement("div")
-    statementAndCity.setAttribute("id", "statementAndCity")
+    let statementAndCity = document.createElement("div");
+    statementAndCity.setAttribute("id", "statementAndCity");
     let weatherStatement = document.createElement("p");
     weatherStatement.setAttribute("id", "weatherTag");
     weatherStatement.innerHTML = "Current Conditions For";
@@ -365,7 +365,7 @@ const HTMLPRINT = {
     statementAndCity.appendChild(cityName);
     let currentTemp = (weather.main.temp - 273.15) * 9 / 5 + 32;
     let tempDisplayAndCondition = document.createElement("div");
-    tempDisplayAndCondition.setAttribute("id", "displayAndCondition")
+    tempDisplayAndCondition.setAttribute("id", "displayAndCondition");
     let tempDisplay = document.createElement("p");
     tempDisplay.setAttribute("id", "currentCondition");
     tempDisplay.innerHTML = Math.ceil(currentTemp) + "&deg;";
