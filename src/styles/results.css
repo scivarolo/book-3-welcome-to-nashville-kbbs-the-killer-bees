@@ -36,6 +36,14 @@
   margin-right: 10px;
 }
 
+.restaurant-rating,
+.average-price {
+  margin: 0;
+}
+.restaurant-rating {
+  margin-top: 5px;
+}
+
 .results__songkick .single-result,
 .itinerary__songkick .single-result {
   grid-template-columns: 1fr 2fr 1fr;
