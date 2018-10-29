@@ -115,6 +115,9 @@ const features = [
 // These would be spread out if we dynamically create the html elements.
 const parkPlaceholder = document.querySelector(".results__parks");
 const parkItinPlaceholder = document.querySelector(".itinerary__parks");
+const zomatoItinPlaceholder = document.querySelector(".itinerary__zomato");
+const songkickItinPlaceholder = document.querySelector(".itinerary__songkick");
+const eventbriteItinPlaceholder = document.querySelector(".itinerary__eventbrite");
 const parkSearchPlaceholder = document.querySelector(".search__parks");
 const savedItin = document.querySelector("#savedItineraries");
 let featureString = "";
@@ -158,11 +161,13 @@ const HANDLEEVENT = {
       stringItinerary = document.querySelector(".itinerary__eventbrite").innerHTML;
       newEvent.eventbrite = stringItinerary;
       API.saveItinerary(newEvent).then(itins => {
+        zomatoItinPlaceholder.innerHTML = null;
+        songkickItinPlaceholder.innerHTML = null;
         parkItinPlaceholder.innerHTML = null;
+        eventbriteItinPlaceholder.innerHTML = null;
         savedItin.innerHTML = null;
         itins.forEach(itin => HTMLPRINT.printSaved(itin))
       });
-      document.getElementById("results").innerHTML = "";
     }
   },
   parkItin() {
