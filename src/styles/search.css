@@ -137,13 +137,15 @@ div[class^="search__"] > div {
 #parkRadioContainer {
   display: flex;
   flex-wrap: wrap;
-  text-align: center;
+  justify-content: center;
+  font-size: 14px;
+  margin-top: 20px;
 }
 .indivBox {
   display: flex;
-  margin: 10px;
+  margin: 6px;
   background-color: rgb(245, 245, 245);
-  padding: 7px 12px;
+  padding: 5px 10px;
   border-radius: 18px;
 }
 .indivBox input {
