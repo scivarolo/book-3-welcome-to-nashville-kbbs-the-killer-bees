@@ -205,31 +205,31 @@ const HANDLEEVENT = {
 // This section handles the creation of html elements and posts to html page.
 const HTMLPRINT = {
   printSaved(itin) {
-    if (itin !== undefined) {
-      let eachItin = document.createElement("article");
-      eachItin.setAttribute("class", "savedItinEvents");
+    let eachItin = document.createElement("article");
+    eachItin.setAttribute("class", "savedItinEvents");
+    if (itin.name !== undefined) {
       let name = document.createElement("h1");
       name.setAttribute("class", "itinName");
       name.innerHTML = itin.name;
       eachItin.appendChild(name);
-      let food = document.createElement("div");
-      food.setAttribute("class", "itinerary__zomato");
-      food.innerHTML = itin.zomato;
-      eachItin.appendChild(food);
-      let music = document.createElement("div");
-      music.setAttribute("class", "itinerary__songkick");
-      music.innerHTML = itin.songkick;
-      eachItin.appendChild(music);
-      let park = document.createElement("div");
-      park.setAttribute("class", "itinerary__parks");
-      park.innerHTML = itin.parks;
-      eachItin.appendChild(park);
-      let meeting = document.createElement("div");
-      meeting.setAttribute("class", "itinerary__eventbrite");
-      meeting.innerHTML = itin.eventbrite;
-      eachItin.appendChild(meeting);
-      savedItin.appendChild(eachItin);
-    }
+    };
+    let food = document.createElement("div");
+    food.setAttribute("class", "itinerary__zomato");
+    food.innerHTML = itin.zomato;
+    eachItin.appendChild(food);
+    let music = document.createElement("div");
+    music.setAttribute("class", "itinerary__songkick");
+    music.innerHTML = itin.songkick;
+    eachItin.appendChild(music);
+    let park = document.createElement("div");
+    park.setAttribute("class", "itinerary__parks");
+    park.innerHTML = itin.parks;
+    eachItin.appendChild(park);
+    let meeting = document.createElement("div");
+    meeting.setAttribute("class", "itinerary__eventbrite");
+    meeting.innerHTML = itin.eventbrite;
+    eachItin.appendChild(meeting);
+    savedItin.appendChild(eachItin);
   },
   createParkSearch() {
     document.getElementById("parkInitialSelector").innerHTML = `
