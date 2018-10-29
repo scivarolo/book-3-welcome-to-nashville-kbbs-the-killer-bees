@@ -146,7 +146,7 @@ div[class^="search__"] > div {
 .indivBox {
   display: flex;
   margin: 6px;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(220, 220, 220);
   padding: 5px 10px;
   border-radius: 18px;
 }

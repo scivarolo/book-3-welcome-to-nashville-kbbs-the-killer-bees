@@ -12,7 +12,7 @@ html {
 
 body {
   margin: 0;
-  background-color: rgb(245, 245, 250);
+  background-color: rgb(220, 220, 220);
   font-family: "Nunito", sans-serif;
 }
 
@@ -38,7 +38,7 @@ input[type="text"] {
   font-size: 16px;
   border-radius: 15px;
   border: none;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(210, 210, 210);
   height: 30px;
   outline: none;
   padding: 0 15px;
@@ -71,7 +71,7 @@ input[type="button"]:hover  {
 }
 
 .remove-button {
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(220, 220, 220);
   color: rgb(100,100,100);
 }
 
