@@ -32,9 +32,7 @@
   bottom: 0;
   left: 0;
   display: flex;
-  /* display: block; */
   cursor: pointer;
-  /* width: 80%; */
   z-index: 1;
 }
 
@@ -43,13 +41,11 @@
   height: 600px;
   margin: auto;
   vertical-align: center;
-  background-color: purple;
+  background-color: lightcyan;
   display: flex;
-  /* align-self: flex-end; */
-  align-items: center;
-  /* align-content: flex-end; */
+  align-items: flex-end;
   justify-content: center;
-  /* justify-items: center; */
+  border: 2px solid darkgray;
 }
 
 
@@ -57,7 +53,8 @@
 .welcomeInformation {
   /* visibility: hidden; */
   width: 80%;
-  background-color: #555;
+  height: 35%;
+  background-color: lightcyan;
   color: #fff;
   text-align: center;
   border-radius: 6px;
@@ -66,25 +63,27 @@
   z-index: 1;
   display: flex;
   justify-content: center;
+  align-items: center;
+  border-left: 2px solid darkgray;
+  border-right: 2px solid darkgray;
 }
  .welcomeImage{
-  /* width: 100%; */
+  width: 80%;
   max-width: 800px;
-  /* margin: 0 auto; */
   z-index: 1;
-  height: 200px;
+  height: 300px;
   display: flex;
   align-self: flex-start;
   justify-content: center;
 }
 
 #welcomeExit{
-  /* position: absolute; */
-  display: flex;
-  justify-content: flex-end;
-  align-content: flex-start;
-  top: 6px;
-  right: 150px;
+  position: absolute;
+  /* display: flex; */
+  /* justify-content: flex-end; */
+  /* align-content: flex-start; */
+  top: 125px;
+  right: 118px;
   z-index: 2;
   font-weight: bold;
 }
