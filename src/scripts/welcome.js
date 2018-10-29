@@ -59,16 +59,19 @@ function exitButtonEvent(){
 
 // Event listener on button click that captures the input and passes it into a variable
 
+let itineraryName = " "
+
 function captureNameInput(){
   let nameInputButton = document.getElementById("welcomeNameInputButton");
-  let itineraryName = " "
-
   nameInputButton.addEventListener("click", ()=>{
     if (nameInput.value === ""){
       alert("Please enter your name")
     } else{
       itineraryName = nameInput.value;
       welcomePage.style.display = "none";
+      if (itineraryName !== "") {
+      itinName.innerHTML = itineraryName;
+      }
     }
   })
 }
