@@ -9,13 +9,14 @@
   <link rel="stylesheet" href="styles/park.css">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/welcome.css">
+  <link rel="stylesheet" href="styles/search.css">
   <link rel="stylesheet" href="styles/results.css">
   <title>Welcome to Nashville</title>
 </head>
 
 <body>
   <!-- Begin Header Display -->
-  <div class="header__div"><img src="img/kbbs-welcome-to-nashville-header.jpg" alt="Welcome to Nashville" width="100%"></div>
+  <div class="header__div"><img src="img/kbbs-restaurants-header.jpg" alt="Welcome to Nashville" width="100%"></div>
   <!-- End Header Display -->
 
   <!-- <h1 class="page-title">Welcome to Nashville</h1> -->
@@ -34,34 +35,52 @@
         <li class="search-tab">Events</li>
       </ul>
     </nav>
-    <h2 class="section__heading">Search for Something</h2>
+    <!-- <h2 class="section__heading search-heading">Search for Something</h2> -->
     <div class="search__zomato show">
-      <label for="zomatoInput">Search Zomato</label>
-      <input type="text" name="zomatoInput" id="zomatoInput">
-      <button id="zomatoInputBtn">Search</button>
-      <button id="zomatoTrendingBtn">Show Me Trending Restaurants</button>
+      <div>
+        <div class="search-section">
+          <label for="zomatoInput">Find a Restaurant</label>
+          <input type="text" name="zomatoInput" id="zomatoInput">
+          <button id="zomatoInputBtn">Search</button>
+        </div>
+        <div class="search-section">
+          <button id="zomatoTrendingBtn">Show Me Trending Restaurants</button>
+        </div>
+      </div>
     </div>
     <div class="search__songkick">
-      <label for="songkickInput">Search Ticketmaster</label>
-      <select id="songkickEventTypeSelect" name="songkickInput">
-        <option value="music">Music</option>
-        <option value="sports">Sports</option>
-      </select>
-      <input type="text" name="songkickInput" id="songkickInput">
-      <input type="button" id="songkickInputBtn" value="Search">
+      <div>
+        <div class="search-section">
+          <label for="songkickInput">Search Ticketmaster</label>
+          <select id="songkickEventTypeSelect" name="songkickInput">
+            <option value="music">Music</option>
+            <option value="sports">Sports</option>
+          </select>
+        </div>
+        <div class="search-section">
+          <input type="text" name="songkickInput" id="songkickInput">
+          <input type="button" id="songkickInputBtn" value="Search">
+        </div>
+      </div>
     </div>
     <div class="search__parks">
-      <section id="parkInitialSelector"></section>
-      <section id="parkInputContainer"></section>
-      <section id="parkRadioContainer"></section>
-      <!-- <label for="parksInput">Search Parks</label>
-      <input type="text" name="parksInput" id="parksInput">
-      <button id="parksInputBtn">Search</button> -->
+      <div>
+        <section id="parkInitialSelector"></section>
+        <section id="parkInputContainer"></section>
+        <section id="parkRadioContainer"></section>
+        <!-- <label for="parksInput">Search Parks</label>
+        <input type="text" name="parksInput" id="parksInput">
+        <button id="parksInputBtn">Search</button> -->
+      </div>
     </div>
     <div class="search__eventbrite">
-      <label for="eventbriteInput">Search Eventbrite</label>
-      <input type="text" name="eventbriteInput" id="eventbriteInput">
-      <button id="eventbriteInputBtn">Search</button>
+      <div>
+        <div class="search-section">
+          <label for="eventbriteInput">Search Eventbrite</label>
+          <input type="text" name="eventbriteInput" id="eventbriteInput">
+          <button id="eventbriteInputBtn">Search</button>
+        </div>
+      </div>
     </div>
   </section>
   <!-- End Search Boxes -->
@@ -69,7 +88,7 @@
   <!-- Results Display -->
   <section id="results" class="wrapper wrapper--results">
     <h2 class="section__heading">Here are your results:</h2>
-    <div class="results__zomato"></div>
+    <div class="results__zomato show"></div>
     <div class="results__songkick"></div>
     <div class="results__parks"></div>
     <div class="results__eventbrite"></div>
